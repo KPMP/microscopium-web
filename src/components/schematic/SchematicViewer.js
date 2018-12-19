@@ -15,9 +15,7 @@ class SchematicViewer extends Component {
                 <h1>Schematic Viewer Page</h1>
                 <Col>
                     { schematic.root.map((structure, i) => {
-
                         let structureName = structure.structure;
-
                         return <Row>
                                 <h2>{structureName}</h2>
                                 <ListGroup>
