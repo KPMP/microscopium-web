@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
 import loadedState from './initialState';
 import actionNames from './actions/actionNames';
-import { selectedCell, selectedSites } from './components/selectionReducers';
+import { selectedCell, selectedSites, allSites } from './components/selectionReducers';
 
 const appReducer = combineReducers({
     selectedCell,
-    selectedSites
+    selectedSites,
+    allSites
 });
 
 const rootReducer = (state, action) => {
