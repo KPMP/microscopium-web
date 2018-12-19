@@ -10,6 +10,15 @@ class DataVizViewer extends Component {
         this.onSiteClick = this.onSiteClick.bind(this);
     }
 
+    componentDidMount() {
+        let urlCell = decodeURIComponent(this.props.match.params.cellName);
+
+        //If we detect the URL has a different selected cell state than redux, set redux to match URL
+        if(this.props.selectedCell !== urlCell) {
+            this.props.setSelectedCell(urlCell);
+        }
+    }
+
     onSiteClick(siteName) {
         let sites = this.props.selectedSites
             , siteIsSelected = sites.indexOf(siteName);
@@ -39,7 +48,7 @@ class DataVizViewer extends Component {
                         { this.props.allSites.map((siteName) => {
                             return <Button
                                     color="primary"
-                                    onClick={() => {this.onSiteClick(siteName)} }
+                                    onClick={() => {this.onSiteClick(siteName)}}
                                     active={this.props.selectedSites.indexOf(siteName) > -1}>
                                     {siteName}
                                 </Button>;

@@ -36,7 +36,7 @@ class App extends Component {
               <HashRouter>
                 <Switch>
                   <Route exact path="/" component={SchematicViewerContainer} />
-                  <Route path="/data" component={DataVizViewerContainer} />
+                  <Route path="/data/:cellName" component={DataVizViewerContainer} />
                 </Switch>
               </HashRouter>
             </Container>

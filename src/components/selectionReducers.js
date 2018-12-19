@@ -3,10 +3,7 @@ import actionNames from '../actions/actionNames';
 export const selectedCell = (state = {}, action) => {
     switch(action.type) {
         case actionNames.SET_SELECTED_CELL:
-            return {
-                ...state,
-                selectedCell: action.payload
-            };
+            return action.payload;
         default:
             return state;
     }
