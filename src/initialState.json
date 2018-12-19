@@ -1,5 +1,13 @@
 {
-  "data": [
-    "Foo", "Bar", "Boo", "Baz"
+  "selectedCell": "Podocyte",
+  "selectedSites": [
+    "umich_sc",
+    "ucsd_sn",
+    "ucsf_sc"
+  ],
+  "allSites": [
+    "umich_sc",
+    "ucsd_sn",
+    "ucsf_sc"
   ]
 }

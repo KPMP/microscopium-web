@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import atlas from '../../data/atlas';
 
 class DataVizViewer extends Component {
     render() {
