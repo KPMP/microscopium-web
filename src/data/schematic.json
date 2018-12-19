@@ -1,37 +1,55 @@
 {
-  "schematic": {
-    "Endothelial": [
-      "Peritubular capillary",
-      "Arteriole",
-      "Glomerular endothelial",
-      "Ascending vasa recta",
-      "Descending vasa recta"
-    ],
-    "Glomerular": [
-      "Mesangial cell",
-      "Podocyte"
-    ],
-    "Immune": [
-      "Macrophage",
-      "Monocyte",
-      "T cells"
-    ],
-    "Interstitium": [],
-    "Other vascular": [
-      "Vascular smooth muscle cells / pericytes"
-    ],
-    "Tubular": [
-      "Connecting tubule",
-      "Descending loop of Henle",
-      "Distal tubule",
-      "Intercalated cells",
-      "Principal cells",
-      "Proximal tubule",
-      "Proximal tubule: S1",
-      "Proximal tubule: S2",
-      "Proximal tubule: S3",
-      "Thick ascending loop of Henle",
-      "Thin ascending loop of Henle"
-    ]
-  }
+  "root": [
+    {
+      "structure": "Endothelial",
+      "cells": [
+        "Peritubular capillary",
+        "Arteriole",
+        "Glomerular endothelial",
+        "Ascending vasa recta",
+        "Descending vasa recta"
+      ]
+    },
+    {
+      "structure": "Glomerular",
+      "cells": [
+        "Mesangial cell",
+        "Podocyte"
+      ]
+    },
+    {
+      "structure": "Immune",
+      "cells": [
+        "Macrophage",
+        "Monocyte",
+        "T cells"
+      ]
+    },
+    {
+      "structure": "Interstitium",
+      "cells": []
+    },
+    {
+      "structure": "Other vascular",
+      "cells": [
+        "Vascular smooth muscle cells / pericytes"
+      ]
+    },
+    {
+      "structure": "Tubular",
+      "cells": [
+        "Connecting tubule",
+        "Descending loop of Henle",
+        "Distal tubule",
+        "Intercalated cells",
+        "Principal cells",
+        "Proximal tubule",
+        "Proximal tubule: S1",
+        "Proximal tubule: S2",
+        "Proximal tubule: S3",
+        "Thick ascending loop of Henle",
+        "Thin ascending loop of Henle"
+      ]
+    }
+  ]
 }

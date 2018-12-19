@@ -14,16 +14,21 @@ class SchematicViewer extends Component {
             <div>
                 <h1>Schematic Viewer Page</h1>
                 <Col>
-                    { Object.values(schematic.schematic).map((structure, i) => {
+                    { schematic.root.map((structure, i) => {
 
-                        return <ListGroup>
-                            {structure.map((cellName, j) => {
-                                let href="/data/" + encodeURIComponent(cellName);
-                                return <ListGroupItem>
-                                           <Link to={href}>{cellName}</Link>
-                                       </ListGroupItem>
-                            })}
-                        </ListGroup>
+                        let structureName = structure.structure;
+
+                        return <Row>
+                                <h2>{structureName}</h2>
+                                <ListGroup>
+                                    {structure.cells.map((cellName, j) => {
+                                        let href="/data/" + encodeURIComponent(cellName);
+                                        return <ListGroupItem>
+                                                   <Link to={href}>{cellName}</Link>
+                                               </ListGroupItem>
+                                    })}
+                                </ListGroup>
+                            </Row>
                     })}
                 </Col>
             </div>
