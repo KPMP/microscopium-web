@@ -5,8 +5,8 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 
-import SchematicViewer from './components/schematic/SchematicViewer';
-import DataVizViewer from './components/dataviz/DataVizViewer';
+import SchematicViewerContainer from './components/schematic/SchematicViewerContainer';
+import DataVizViewerContainer from './components/dataviz/DataVizViewerContainer';
 import initialState from './initialState';
 import rootReducer from './reducers';
 
@@ -31,12 +31,12 @@ store.subscribe(saveState);
 class App extends Component {
   render() {
     return (
-        <Provider>
+        <Provider store={store}>
             <Container fluid>
               <HashRouter>
                 <Switch>
-                  <Route exact path="/" component={SchematicViewer} />
-                  <Route path="/data" component={DataVizViewer} />
+                  <Route exact path="/" component={SchematicViewerContainer} />
+                  <Route path="/data/:cellName" component={DataVizViewerContainer} />
                 </Switch>
               </HashRouter>
             </Container>
