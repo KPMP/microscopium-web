@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import { Col, Row, ButtonGroup, Button } from 'reactstrap';
-import atlas from '../../data/atlas';
+import { Container, Col, Row, ButtonGroup, Button } from 'reactstrap';
+import GeneDataTable from "./GeneDataTable";
 
 class DataVizViewer extends Component {
 
     constructor(props) {
         super(props);
-
         this.onSiteClick = this.onSiteClick.bind(this);
     }
 
@@ -36,26 +35,35 @@ class DataVizViewer extends Component {
 
     render() {
         return (
-            <Col>
+            <Container>
                 <Row>
-                <h1>Data Viz Viewer Page</h1>
+                    <Col>
+                        <h1>Data Viz Viewer Page</h1>
+                    </Col>
                 </Row>
                 <Row>
-                <h2>Selected cell type: {this.props.selectedCell}</h2>
+                    <Col>
+                        <h2>Selected cell type: {this.props.selectedCell}</h2>
+                    </Col>
                 </Row>
                 <Row>
-                    <ButtonGroup>
-                        { this.props.allSites.map((siteName) => {
-                            return <Button
-                                    color="primary"
-                                    onClick={() => {this.onSiteClick(siteName)}}
-                                    active={this.props.selectedSites.indexOf(siteName) > -1}>
-                                    {siteName}
-                                </Button>;
-                        })}
-                    </ButtonGroup>
+                    <Col>
+                        <ButtonGroup>
+                            { this.props.allSites.map((siteName) => {
+                                return <Button
+                                        color="primary"
+                                        onClick={() => {this.onSiteClick(siteName)}}
+                                        active={this.props.selectedSites.indexOf(siteName) > -1}>
+                                        {siteName}
+                                    </Button>;
+                            })}
+                        </ButtonGroup>
+                    </Col>
+                    <Col>
+                        <GeneDataTable/>
+                    </Col>
                 </Row>
-            </Col>
+            </Container>
         );
     }
 }
