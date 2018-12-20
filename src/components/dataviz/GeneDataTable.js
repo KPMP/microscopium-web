@@ -11,14 +11,8 @@ class GeneDataTable extends Component {
     constructor(props) {
         super(props);
 
-        console.log('+++ GeneDataTable did construct', this.props);
-
         this.getColumns = this.getColumns.bind(this);
         this.getData = this.getData.bind(this);
-    }
-
-    componentDidMount() {
-        console.log('+++ GeneDataTable did mount', this.props);
     }
 
     sortWithNoEntry(a, b) {
@@ -40,8 +34,6 @@ class GeneDataTable extends Component {
     }
 
     getColumns() {
-        console.log('+++ getColumns()');
-
         return [{
             Header: "Gene"
             , id: "gene"
@@ -68,12 +60,10 @@ class GeneDataTable extends Component {
     }
 
     getData() {
-        console.log('+++ getData()');
         return Object.values(atlas.result.cells[this.props.selectedCell].rows);
     }
 
     render() {
-        console.log('+++ render()');
         return (<ReactTable
             data={this.getData()}
             columns={this.getColumns()}
