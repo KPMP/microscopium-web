@@ -12,3 +12,22 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+[data-venn-sets="umich_sc"] {
+  fill: rgba(38, 88, 255, 0.25);
+}
+
+[data-venn-sets="ucsf_sc"] {
+  fill: rgba(15, 35, 255, 0.25);
+}
+
+[data-venn-sets="ucsd_sn"] {
+  fill: rgba(255, 211, 38, 0.25);
+}
+
+g.venn-area text.label, g.venn-intersection text.label {
+  color: black;
+  fill: black;
+  font-weight: bold;
+  stroke: rgba(255, 255, 255, 0.5);
+}

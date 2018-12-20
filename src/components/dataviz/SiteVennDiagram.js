@@ -24,6 +24,9 @@ class SiteVennDiagram extends Component {
         this.props.sets.map((vennSet) => {
             if(difference(vennSet.sets, this.props.sites).length === 0) {
                 selectedVennSets.push(vennSet);
+                //Add a label equal to the set size
+                vennSet.label = vennSet.size.toString();
+                console.log(vennSet);
             }
         });
 

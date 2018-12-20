@@ -13,7 +13,7 @@ class GeneDataTable extends Component {
         this.getColumns = this.getColumns.bind(this);
     }
 
-    sortWithNoEntry(a, b) {
+    static sortWithNoEntry(a, b) {
         if (a === b) {
             return 0;
         }
@@ -31,7 +31,7 @@ class GeneDataTable extends Component {
         }
     }
 
-    filterWithNoEntry(filter, row) {
+    static filterWithNoEntry(filter, row) {
         let gtStatement = filter.value.indexOf(">") === 0
             , ltStatement = filter.value.indexOf("<") === 0
             , existsStatement = filter.value.indexOf("+") === 0
@@ -73,22 +73,22 @@ class GeneDataTable extends Component {
             , id: "umich_sc"
             , accessor: (row) => {
                 return row.hasOwnProperty("f_umich_sc_p_val_adj") ? row.f_umich_sc_p_val_adj : NO_ENTRY;
-            }, sortMethod: this.sortWithNoEntry
-            , filterMethod: this.filterWithNoEntry
+            }, sortMethod: GeneDataTable.sortWithNoEntry
+            , filterMethod: GeneDataTable.filterWithNoEntry
         },{
             Header: "UCSF SC"
             , id: "ucsf_sc"
             , accessor: (row) => {
                 return row.hasOwnProperty("f_ucsf_sc_p_val_adj") ? row.f_ucsf_sc_p_val_adj : NO_ENTRY;
-            }, sortMethod: this.sortWithNoEntry
-            , filterMethod: this.filterWithNoEntry
+            }, sortMethod: GeneDataTable.sortWithNoEntry
+            , filterMethod: GeneDataTable.filterWithNoEntry
         },{
             Header: "UCSD SN"
             , id: "ucsd_sn"
             , accessor: (row) => {
                 return row.hasOwnProperty("f_ucsd_sn_p_val_adj") ? row.f_ucsd_sn_p_val_adj : NO_ENTRY;
-            }, sortMethod: this.sortWithNoEntry
-            , filterMethod: this.filterWithNoEntry
+            }, sortMethod: GeneDataTable.sortWithNoEntry
+            , filterMethod: GeneDataTable.filterWithNoEntry
         },];
     }
 

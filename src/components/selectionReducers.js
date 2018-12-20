@@ -18,6 +18,10 @@ export const selectedSites = (state = [], action) => {
     }
 };
 
-export const allSites = (state = [], action) => {
+export const allSites = (state = []) => {
+    return state;
+};
+
+export const allSitePrettyNames = (state = []) => {
     return state;
 };
