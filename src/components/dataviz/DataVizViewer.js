@@ -60,7 +60,7 @@ class DataVizViewer extends Component {
                         </ButtonGroup>
                     </Col>
                     <Col>
-                        <GeneDataTable/>
+                        <GeneDataTable selectedCell={this.props.selectedCell}/>
                     </Col>
                 </Row>
             </Container>
