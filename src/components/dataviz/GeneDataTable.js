@@ -67,8 +67,9 @@ class GeneDataTable extends Component {
         return (<ReactTable
             data={this.getData()}
             columns={this.getColumns()}
+            defaultPageSize={10}
+            filterable
             />
-
         );
     }
 }
