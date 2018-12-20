@@ -27,8 +27,40 @@ class GeneDataTable extends Component {
         }
 
         else {
-            return a > b ? -1 : 1;
+            return parseFloat(a) > parseFloat(b) ? -1 : 1;
         }
+    }
+
+    filterWithNoEntry(filter, row) {
+        let gtStatement = filter.value.indexOf(">") === 0
+            , ltStatement = filter.value.indexOf("<") === 0
+            , existsStatement = filter.value.indexOf("+") === 0
+            , exists = row[filter.id] === NO_ENTRY;
+
+        if(filter.value === NO_ENTRY) {
+            return exists === true;
+        }
+
+        else if(existsStatement) {
+            return exists === false;
+        }
+
+        else if(gtStatement || ltStatement) {
+            let numberMatch = filter.value.match(/[-\dEe.]+/g)
+                , filterNumber = parseFloat(numberMatch)
+                , filterRowValue = parseFloat(row[filter.id]);
+
+            if(isNaN(numberMatch)) {
+                return false;
+            }
+
+            return gtStatement ? filterRowValue > filterNumber : filterRowValue < filterNumber;
+        }
+
+        else {
+            return parseFloat(row[filter.id]) !== parseFloat(filter.value);
+        }
+
     }
 
     getColumns() {
@@ -42,18 +74,21 @@ class GeneDataTable extends Component {
             , accessor: (row) => {
                 return row.hasOwnProperty("f_umich_sc_p_val_adj") ? row.f_umich_sc_p_val_adj : NO_ENTRY;
             }, sortMethod: this.sortWithNoEntry
+            , filterMethod: this.filterWithNoEntry
         },{
             Header: "UCSF SC"
             , id: "ucsf_sc"
             , accessor: (row) => {
                 return row.hasOwnProperty("f_ucsf_sc_p_val_adj") ? row.f_ucsf_sc_p_val_adj : NO_ENTRY;
             }, sortMethod: this.sortWithNoEntry
+            , filterMethod: this.filterWithNoEntry
         },{
             Header: "UCSD SN"
             , id: "ucsd_sn"
             , accessor: (row) => {
                 return row.hasOwnProperty("f_ucsd_sn_p_val_adj") ? row.f_ucsd_sn_p_val_adj : NO_ENTRY;
             }, sortMethod: this.sortWithNoEntry
+            , filterMethod: this.filterWithNoEntry
         },];
     }
 
