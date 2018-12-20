@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import { Container, Col, Row, ButtonGroup, Button } from 'reactstrap';
 import GeneDataTable from "./GeneDataTable";
+import SiteVennDiagram from './SiteVennDiagram';
+
+import atlas from '../../data/atlas';
 
 class DataVizViewer extends Component {
 
     constructor(props) {
         super(props);
         this.onSiteClick = this.onSiteClick.bind(this);
+        this.getTableRows = this.getTableRows.bind(this);
+        this.getVennSets = this.getVennSets.bind(this);
+    }
+
+    getTableRows() {
+        return Object.values(atlas.result.cells[this.props.selectedCell].rows);
+    }
+
+    getVennSets() {
+        return atlas.result.cells[this.props.selectedCell].sets;
     }
 
     componentDidMount() {
@@ -60,7 +73,10 @@ class DataVizViewer extends Component {
                         </ButtonGroup>
                     </Col>
                     <Col>
-                        <GeneDataTable selectedCell={this.props.selectedCell}/>
+                        <GeneDataTable rows={this.getTableRows()}/>
+                    </Col>
+                    <Col>
+                        <SiteVennDiagram sets={this.getVennSets()} sites={this.props.selectedSites}/>
                     </Col>
                 </Row>
             </Container>

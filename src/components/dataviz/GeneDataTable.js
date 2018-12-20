@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import atlas from '../../data/atlas';
 //import sortBy from 'lodash/sortBy';
 import PropTypes from 'prop-types';
 
@@ -12,7 +11,6 @@ class GeneDataTable extends Component {
         super(props);
 
         this.getColumns = this.getColumns.bind(this);
-        this.getData = this.getData.bind(this);
     }
 
     sortWithNoEntry(a, b) {
@@ -59,13 +57,9 @@ class GeneDataTable extends Component {
         },];
     }
 
-    getData() {
-        return Object.values(atlas.result.cells[this.props.selectedCell].rows);
-    }
-
     render() {
         return (<ReactTable
-            data={this.getData()}
+            data={this.props.rows}
             columns={this.getColumns()}
             defaultPageSize={10}
             filterable
@@ -75,7 +69,7 @@ class GeneDataTable extends Component {
 }
 
 GeneDataTable.propTypes = {
-    selectedCell: PropTypes.string
+    rows: PropTypes.string
 };
 
 export default GeneDataTable;
