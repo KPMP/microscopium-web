@@ -26,7 +26,7 @@ class SiteVennDiagram extends Component {
                 selectedVennSets.push(vennSet);
                 //Add a label equal to the set size
                 vennSet.label = vennSet.size.toString();
-                console.log(vennSet);
+                vennSet.baseSize = vennSet.size;
             }
         });
 
