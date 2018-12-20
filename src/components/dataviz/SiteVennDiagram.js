@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
 import { VennDiagram }  from 'venn.js';
-import d3 from 'd3';
+import * as d3 from 'd3';
 
 class SiteVennDiagram extends Component {
 
@@ -26,7 +26,7 @@ class SiteVennDiagram extends Component {
         //TODO generate filtered sets for venn
 
         console.log('!!! Skipping selected site filtering for now');
-        return this.props.selectedSets;
+        return this.props.sets;
     }
 
     renderChart() {
@@ -39,7 +39,7 @@ class SiteVennDiagram extends Component {
             this.setState({ chart: chart });
         }
 
-        console.log('+++ Applying d3');
+        console.log('+++ Applying d3', sets);
 
         d3
             .select('#venn')
