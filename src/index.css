@@ -45,9 +45,8 @@ code {
   stroke-width: 2px;
 }
 
-
-
-[data-venn-sets="ucsd_sn_ucsf_sc_umich_sc"] {
+[data-venn-sets="ucsd_sn_ucsf_sc_umich_sc"],
+[data-venn-sets="ucsd_sn_umich_sc_ucsf_sc"] {
   fill: rgba(255, 255, 255, 1);
 }
 
