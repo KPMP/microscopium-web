@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import isEqual from 'lodash/isEqual';
 import difference from 'lodash/difference';
 import { createChart, renderChart } from './vennUtils';
 
@@ -9,29 +8,31 @@ class SiteVennDiagram extends Component {
     constructor(props) {
         super(props);
 
-        console.log('+++ SiteVennDiagram constructed');
-
         this.state = {
             chart: null
         };
 
-        this.getSelectedSets = this.getSelectedSets.bind(this);
-        this.propsAreDifferent = this.propsAreDifferent.bind(this);
+        this.getSelectedVennSets = this.getSelectedVennSets.bind(this);
         this.handleChartUpdate = this.handleChartUpdate.bind(this);
     }
 
-    getSelectedSets() {
-        //TODO get the difference between all sets and selected sets
-        //TODO look for deselected entries in sets and omit them from the venn
-        //TODO generate filtered sets for venn
+    getSelectedVennSets() {
+        // _.difference(subset, superset).length === 0
+        // ^^^ That will evaluate to true if subset is truly subset
 
-        console.log('!!! Skipping selected site filtering for now');
-        return this.props.sets;
+        let selectedVennSets = [];
+        this.props.sets.map((vennSet) => {
+            if(difference(vennSet.sets, this.props.sites).length === 0) {
+                selectedVennSets.push(vennSet);
+            }
+        });
+
+        return selectedVennSets;
     }
 
     handleChartUpdate() {
         let chart = this.state.chart;
-        let sets = this.getSelectedSets();
+        let sets = this.getSelectedVennSets();
 
         if(chart == null) {
             chart = createChart();
@@ -41,20 +42,11 @@ class SiteVennDiagram extends Component {
         renderChart(chart, sets, "#venn");
     }
 
-    propsAreDifferent(otherProps) {
-        return !(isEqual(otherProps.selectedSets, this.props.selectedSets) &&
-            isEqual(otherProps.selectedSites, this.props.selectedSites));
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return this.propsAreDifferent(nextProps);;
-    }
-
     componentDidMount() {
         this.handleChartUpdate();
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    componentDidUpdate() {
         this.handleChartUpdate();
     }
 
@@ -69,7 +61,8 @@ class SiteVennDiagram extends Component {
 
 SiteVennDiagram.propTypes = {
     sets: PropTypes.arrayOf(PropTypes.array),
-    sites: PropTypes.arrayOf(PropTypes.string)
+    sites: PropTypes.arrayOf(PropTypes.string),
+    allSites: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default SiteVennDiagram;

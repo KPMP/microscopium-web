@@ -76,7 +76,11 @@ class DataVizViewer extends Component {
                         <GeneDataTable rows={this.getTableRows()}/>
                     </Col>
                     <Col>
-                        <SiteVennDiagram sets={this.getVennSets()} sites={this.props.selectedSites}/>
+                        <SiteVennDiagram
+                            sets={this.getVennSets()}
+                            sites={this.props.selectedSites}
+                            allSites={this.props.allSites}
+                        />
                     </Col>
                 </Row>
             </Container>
