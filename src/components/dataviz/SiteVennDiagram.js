@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash/isEqual';
-import { VennDiagram }  from 'venn.js';
-import * as d3 from 'd3';
+import difference from 'lodash/difference';
+import { createChart, renderChart } from './vennUtils';
 
 class SiteVennDiagram extends Component {
 
@@ -17,7 +17,7 @@ class SiteVennDiagram extends Component {
 
         this.getSelectedSets = this.getSelectedSets.bind(this);
         this.propsAreDifferent = this.propsAreDifferent.bind(this);
-        this.renderChart = this.renderChart.bind(this);
+        this.handleChartUpdate = this.handleChartUpdate.bind(this);
     }
 
     getSelectedSets() {
@@ -29,22 +29,16 @@ class SiteVennDiagram extends Component {
         return this.props.sets;
     }
 
-    renderChart() {
+    handleChartUpdate() {
         let chart = this.state.chart;
         let sets = this.getSelectedSets();
 
         if(chart == null) {
-            console.log('+++ Instancing chart');
-            chart = VennDiagram();
+            chart = createChart();
             this.setState({ chart: chart });
         }
 
-        console.log('+++ Applying d3', sets);
-
-        d3
-            .select('#venn')
-            .datum(sets)
-            .call(chart);
+        renderChart(chart, sets, "#venn");
     }
 
     propsAreDifferent(otherProps) {
@@ -53,13 +47,15 @@ class SiteVennDiagram extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        let output = this.propsAreDifferent(nextProps);
-        console.log('+++ vennDiagram should update', output);
-        return output;
+        return this.propsAreDifferent(nextProps);;
     }
 
     componentDidMount() {
-        this.renderChart();
+        this.handleChartUpdate();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        this.handleChartUpdate();
     }
 
     render() {
