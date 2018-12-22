@@ -33,10 +33,10 @@ class App extends Component {
     return (
         <Provider store={store}>
             <Container fluid>
-              <HashRouter>
+              <HashRouter basename={`${process.env.PUBLIC_URL}`}>
                 <Switch>
-                  <Route exact path="/" component={SchematicViewerContainer} />
-                  <Route path="/data/:cellName" component={DataVizViewerContainer} />
+                  <Route exact path={'/'} component={SchematicViewerContainer} />
+                  <Route path={'/data/:cellName'} component={DataVizViewerContainer} />
                 </Switch>
               </HashRouter>
             </Container>
