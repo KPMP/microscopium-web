@@ -80,6 +80,7 @@ class DataVizViewer extends Component {
                             sets={this.getVennSets()}
                             sites={this.props.selectedSites}
                             allSites={this.props.allSites}
+                            fixedSizeVenn={this.props.fixedSizeVenn}
                         />
                     </Col>
                 </Row>

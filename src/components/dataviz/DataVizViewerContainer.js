@@ -6,7 +6,8 @@ const mapStateToProps = (state, props) => ({
     selectedSites: state.selectedSites,
     selectedCell: state.selectedCell,
     allSites: state.allSites,
-    allSitePrettyNames: state.allSitePrettyNames
+    allSitePrettyNames: state.allSitePrettyNames,
+    fixedSizeVenn: state.fixedSizeVenn
 });
 
 const mapDispatchToProps = (dispatch, props) => ({

@@ -25,3 +25,7 @@ export const allSites = (state = []) => {
 export const allSitePrettyNames = (state = []) => {
     return state;
 };
+
+export const fixedSizeVenn = (state = []) => {
+    return state;
+};

@@ -24,10 +24,18 @@ class SiteVennDiagram extends Component {
         this.props.sets.map((vennSet) => {
             if(difference(vennSet.sets, this.props.sites).length === 0) {
                 selectedVennSets.push(vennSet);
+
                 //Add a label equal to the set size
                 vennSet.label = vennSet.size.toString();
                 vennSet.baseSize = vennSet.size;
+
+                //If we are fixing the size of the venn, assign that value to this set
+                if(this.props.fixedSizeVenn > 0) {
+                    vennSet.size = this.props.fixedSizeVenn * (this.props.allSites.length / vennSet.sets.length);
+                    console.log('+++ sets and size: ', vennSet.sets, vennSet.size);
+                }
             }
+
         });
 
         return selectedVennSets;
@@ -65,7 +73,8 @@ class SiteVennDiagram extends Component {
 SiteVennDiagram.propTypes = {
     sets: PropTypes.arrayOf(PropTypes.array),
     sites: PropTypes.arrayOf(PropTypes.string),
-    allSites: PropTypes.arrayOf(PropTypes.string)
+    allSites: PropTypes.arrayOf(PropTypes.string),
+    fixedSizeVenn: PropTypes.number
 };
 
 export default SiteVennDiagram;
