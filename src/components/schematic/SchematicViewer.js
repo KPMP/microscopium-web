@@ -26,9 +26,9 @@ class SchematicViewer extends Component {
                                 <h2>{structureName}</h2>
                                 <ListGroup>
                                     {structure.cells.map((cellName) => {
-                                        let href="/data/" + encodeURIComponent(cellName);
+                                        let linkTo = "/data/" + encodeURIComponent(cellName);
                                         return <ListGroupItem>
-                                                   <Link to={href}
+                                                   <Link to={linkTo}
                                                    onClick={() => { this.onCellClick(cellName)}}
                                                    >{cellName}</Link>
                                                </ListGroupItem>
