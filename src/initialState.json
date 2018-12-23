@@ -11,9 +11,9 @@
     "ucsf_sc"
   ],
   "allSitePrettyNames": {
-    "umich_sc": "UMICH scRNA-Seq",
-    "ucsd_sn": "UCSD-WU snDrop-Seq",
-    "ucsf_sc": "UCSF mdscRNA-seq"
+    "umich_sc": "scRNA-Seq (UMich)",
+    "ucsd_sn": "snDrop-Seq (UCSD-WU)",
+    "ucsf_sc": "mdscRNA-seq (UCSF)"
   },
   "fixedSizeVenn": 100
 }
