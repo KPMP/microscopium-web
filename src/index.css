@@ -32,46 +32,54 @@ code {
   color: white;
 }
 
-[data-venn-sets="umich_sc"] {
+
+g.venn-area[data-venn-sets="umich_sc"] {
   fill: rgba(50, 50, 255, 1);
 }
 
-[data-venn-sets="ucsf_sc"] {
+g.venn-area[data-venn-sets="ucsf_sc"] {
   fill: rgba(255, 50, 50, 1);
 }
 
-[data-venn-sets="ucsd_sn"] {
+g.venn-area[data-venn-sets="ucsd_sn"] {
   fill: rgba(50, 255, 50, 1);
 }
 
 
-
-[data-venn-sets="ucsf_sc_umich_sc"] {
+g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] {
   fill: rgba(173, 65, 240, 1);
   stroke: rgba(255, 255, 255, 0.25);
   stroke-width: 2px;
 }
 
-[data-venn-sets="ucsd_sn_ucsf_sc"] {
+g.venn-area[data-venn-sets="ucsd_sn_ucsf_sc"] {
   fill: rgba(231, 240, 65, 1);
   stroke: rgba(255, 255, 255, 0.25);
   stroke-width: 2px;
 }
 
-[data-venn-sets="ucsd_sn_umich_sc"] {
+g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] {
   fill: rgba(65, 240, 205, 1);
   stroke: rgba(255, 255, 255, 0.25);
   stroke-width: 2px;
 }
 
-[data-venn-sets="ucsd_sn_ucsf_sc_umich_sc"],
-[data-venn-sets="ucsd_sn_umich_sc_ucsf_sc"] {
+g.venn-area[data-venn-sets="ucsd_sn_ucsf_sc_umich_sc"],
+g.venn-area[data-venn-sets="ucsd_sn_umich_sc_ucsf_sc"] {
   fill: rgba(255, 255, 255, 1);
 }
 
-g.venn-area text.label, g.venn-intersection text.label {
+
+g.venn-area text.label tspan,
+g.venn-intersection text.label tspan {
   color: black;
   fill: black;
   font-weight: bold;
   stroke: rgba(255, 255, 255, 0.5);
+}
+
+g.venn-area[data-venn-sets="umich_sc"] text.label tspan,
+g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] text.label tspan,
+g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] text.label tspan {
+  fill: white !important;
 }
