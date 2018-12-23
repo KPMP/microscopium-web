@@ -18,22 +18,24 @@ class SchematicViewer extends Component {
     render() {
         return (
             <div>
-                <h1>Schematic Viewer Page</h1>
+                <h1>Select a Cell Type</h1>
                 <Col>
                     { schematic.root.map((structure) => {
                         let structureName = structure.structure;
-                        return <Row>
-                                <h2>{structureName}</h2>
-                                <ListGroup>
+                        return <ul className="cell-structure-list">
+                            <li>
+                                <span className="cell-structure-name">{structureName}</span>
+                                <ul className="cell-type-list">
                                     {structure.cells.map((cellName) => {
-                                        return <ListGroupItem>
-                                                   <Link to={`/data/${encodeURIComponent(cellName)}`}
+                                        return <li>
+                                                <Link to={`/data/${encodeURIComponent(cellName)}`}
                                                    onClick={() => { this.onCellClick(cellName)}}
                                                    >{cellName}</Link>
-                                               </ListGroupItem>
+                                            </li>
                                     })}
-                                </ListGroup>
-                            </Row>
+                                </ul>
+                            </li>
+                        </ul>
                     })}
                 </Col>
             </div>
