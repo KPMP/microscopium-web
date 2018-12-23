@@ -9,5 +9,11 @@
     "umich_sc",
     "ucsd_sn",
     "ucsf_sc"
-  ]
+  ],
+  "allSitePrettyNames": {
+    "umich_sc": "UMICH scRNA-Seq",
+    "ucsd_sn": "UCSD-WU snDrop-Seq",
+    "ucsf_sc": "UCSF mdscRNA-seq"
+  },
+  "fixedSizeVenn": 100
 }

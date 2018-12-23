@@ -5,7 +5,9 @@ import { setSelectedSites, setSelectedCell } from "../../actions/actions";
 const mapStateToProps = (state, props) => ({
     selectedSites: state.selectedSites,
     selectedCell: state.selectedCell,
-    allSites: state.allSites
+    allSites: state.allSites,
+    allSitePrettyNames: state.allSitePrettyNames,
+    fixedSizeVenn: state.fixedSizeVenn
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
