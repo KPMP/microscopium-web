@@ -13,6 +13,25 @@ code {
     monospace;
 }
 
+.site-selector-group {
+  max-width: 200px;
+}
+
+.umich_sc {
+  background: rgba(50, 50, 255, 1);
+  color: white;
+}
+
+.ucsf_sc {
+  background: rgba(255, 50, 50, 1);
+  color: white;
+}
+
+.ucsd_sn {
+  background: rgba(50, 255, 50, 1);
+  color: white;
+}
+
 [data-venn-sets="umich_sc"] {
   fill: rgba(50, 50, 255, 1);
 }

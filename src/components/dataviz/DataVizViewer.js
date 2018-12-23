@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, ButtonGroup, Button } from 'reactstrap';
+import { Container, Col, Row, ButtonGroup, Button, Input, InputGroup, InputGroupText, InputGroupAddon } from 'reactstrap';
 import GeneDataTable from "./GeneDataTable";
 import SiteVennDiagram from './SiteVennDiagram';
 
@@ -49,41 +49,45 @@ class DataVizViewer extends Component {
     render() {
         return (
             <Container>
-                <Row>
-                    <Col>
-                        <h1>Data Viz Viewer Page</h1>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
-                        <h2>Selected cell type: {this.props.selectedCell}</h2>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col>
+                <Col>
+                    <Row>
+                        <h4>{this.props.selectedCell} cell gene expression</h4>
+                    </Row>
+                    <Row>
                         <ButtonGroup>
-                            { this.props.allSites.map((siteName) => {
-                                return <Button
-                                        color="primary"
-                                        onClick={() => {this.onSiteClick(siteName)}}
-                                        active={this.props.selectedSites.indexOf(siteName) > -1}>
-                                        {siteName}
-                                    </Button>;
-                            })}
+                            <Button color="primary" active>Transcriptomics</Button>
+                            <Button color="primary" disabled outline>Proteomics</Button>
+                            <Button color="primary" disabled outline>Metabolomics</Button>
                         </ButtonGroup>
-                    </Col>
-                    <Col>
-                        <GeneDataTable rows={this.getTableRows()}/>
-                    </Col>
-                    <Col>
-                        <SiteVennDiagram
-                            sets={this.getVennSets()}
-                            sites={this.props.selectedSites}
-                            allSites={this.props.allSites}
-                            fixedSizeVenn={this.props.fixedSizeVenn}
-                        />
-                    </Col>
-                </Row>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <h6>Differentially expressed genes</h6>
+                            <SiteVennDiagram
+                                sets={this.getVennSets()}
+                                sites={this.props.selectedSites}
+                                allSites={this.props.allSites}
+                                fixedSizeVenn={this.props.fixedSizeVenn}
+                            />
+                            <div class="site-selector-group">
+                                { this.props.allSites.map((siteName) => {
+                                    return (
+                                        <p>
+                                        <Input
+                                            type="checkbox"
+                                            class="site-selector-input"
+                                            checked={this.props.selectedSites.indexOf(siteName) > -1}
+                                            onClick={() => {this.onSiteClick(siteName)}} />
+                                        <span class={`site-selector-label ${siteName}`}>{this.props.allSitePrettyNames[siteName]}</span>
+                                        </p>);
+                                })}
+                            </div>
+                        </Col>
+                        <Col>
+                            <GeneDataTable rows={this.getTableRows()}/>
+                        </Col>
+                    </Row>
+                </Col>
             </Container>
         );
     }
