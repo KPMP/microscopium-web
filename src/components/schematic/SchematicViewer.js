@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import schematic from '../../data/schematic';
-import { Col, Row, ListGroup, ListGroupItem } from 'reactstrap';
+import { Col, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class SchematicViewer extends Component {
@@ -17,26 +17,30 @@ class SchematicViewer extends Component {
 
     render() {
         return (
-            <div>
-                <h1>Schematic Viewer Page</h1>
-                <Col>
-                    { schematic.root.map((structure) => {
-                        let structureName = structure.structure;
-                        return <Row>
-                                <h2>{structureName}</h2>
-                                <ListGroup>
-                                    {structure.cells.map((cellName) => {
-                                        return <ListGroupItem>
-                                                   <Link to={`/data/${encodeURIComponent(cellName)}`}
-                                                   onClick={() => { this.onCellClick(cellName)}}
-                                                   >{cellName}</Link>
-                                               </ListGroupItem>
-                                    })}
-                                </ListGroup>
-                            </Row>
-                    })}
-                </Col>
-            </div>
+            <Container id="schematic-viewer">
+                <Row>
+                    <Col sm>
+                    <h1>Select a Cell Type</h1>
+                        { schematic.root.map((structure) => {
+                            let structureName = structure.structure;
+                            return <ul className="cell-structure-list">
+                                <li>
+                                    <span className="cell-structure-name">{structureName}</span>
+                                    <ul className="cell-type-list">
+                                        {structure.cells.map((cellName) => {
+                                            return <li>
+                                                    <Link to={`/data/${encodeURIComponent(cellName)}`}
+                                                       onClick={() => { this.onCellClick(cellName)}}
+                                                       >{cellName}</Link>
+                                                </li>
+                                        })}
+                                    </ul>
+                                </li>
+                            </ul>
+                        })}
+                    </Col>
+                </Row>
+            </Container>
         );
     }
 }

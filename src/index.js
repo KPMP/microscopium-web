@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'react-table/react-table.css'
 import App from './App';

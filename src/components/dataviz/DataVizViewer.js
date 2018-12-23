@@ -48,7 +48,7 @@ class DataVizViewer extends Component {
 
     render() {
         return (
-            <Container>
+            <Container  id="data-viewer">
                 <Row>
                     <h4>{this.props.selectedCell} cell gene expression</h4>
                 </Row>
