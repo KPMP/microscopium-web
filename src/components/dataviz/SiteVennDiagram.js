@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import difference from 'lodash/difference';
 import { createChart, renderChart } from './vennUtils';
 
+const VENN_PARAMETERS = {
+    width: 330
+    , height: 400
+};
+
 class SiteVennDiagram extends Component {
 
     constructor(props) {
@@ -45,7 +50,7 @@ class SiteVennDiagram extends Component {
         let sets = this.getSelectedVennSets();
 
         if(chart == null) {
-            chart = createChart();
+            chart = createChart(VENN_PARAMETERS);
             this.setState({ chart: chart });
         }
 

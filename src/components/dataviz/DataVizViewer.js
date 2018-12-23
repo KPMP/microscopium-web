@@ -49,45 +49,47 @@ class DataVizViewer extends Component {
     render() {
         return (
             <Container>
-                <Col>
-                    <Row>
-                        <h4>{this.props.selectedCell} cell gene expression</h4>
-                    </Row>
-                    <Row>
-                        <ButtonGroup>
-                            <Button color="primary" active>Transcriptomics</Button>
-                            <Button color="primary" disabled outline>Proteomics</Button>
-                            <Button color="primary" disabled outline>Metabolomics</Button>
-                        </ButtonGroup>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <h6>Differentially expressed genes</h6>
-                            <SiteVennDiagram
-                                sets={this.getVennSets()}
-                                sites={this.props.selectedSites}
-                                allSites={this.props.allSites}
-                                fixedSizeVenn={this.props.fixedSizeVenn}
-                            />
-                            <div class="site-selector-group">
-                                { this.props.allSites.map((siteName) => {
-                                    return (
-                                        <p>
-                                        <Input
-                                            type="checkbox"
-                                            class="site-selector-input"
-                                            checked={this.props.selectedSites.indexOf(siteName) > -1}
-                                            onClick={() => {this.onSiteClick(siteName)}} />
-                                        <span class={`site-selector-label ${siteName}`}>{this.props.allSitePrettyNames[siteName]}</span>
-                                        </p>);
-                                })}
-                            </div>
-                        </Col>
-                        <Col>
-                            <GeneDataTable rows={this.getTableRows()}/>
-                        </Col>
-                    </Row>
-                </Col>
+                <Row>
+                    <h4>{this.props.selectedCell} cell gene expression</h4>
+                </Row>
+                <Row>
+                    <ButtonGroup>
+                        <Button color="primary" active>Transcriptomics</Button>
+                        <Button color="primary" disabled outline>Proteomics</Button>
+                        <Button color="primary" disabled outline>Metabolomics</Button>
+                    </ButtonGroup>
+                </Row>
+                <Row>
+                    <Col sm={4}>
+                        <h6>Differentially expressed genes</h6>
+                        <SiteVennDiagram
+                            sets={this.getVennSets()}
+                            sites={this.props.selectedSites}
+                            allSites={this.props.allSites}
+                            fixedSizeVenn={this.props.fixedSizeVenn}
+                        />
+                        <div class="site-selector-group">
+                            { this.props.allSites.map((siteName) => {
+                                return (
+                                    <p>
+                                    <Input
+                                        type="checkbox"
+                                        class="site-selector-input"
+                                        checked={this.props.selectedSites.indexOf(siteName) > -1}
+                                        onClick={() => {this.onSiteClick(siteName)}} />
+                                    <span class={`site-selector-label ${siteName}`}>{this.props.allSitePrettyNames[siteName]}</span>
+                                    </p>);
+                            })}
+                        </div>
+                    </Col>
+                    <Col sm={8}>
+                        <GeneDataTable
+                            rows={this.getTableRows()}
+                            allSites={this.props.allSites}
+                            allSitesPrettyNames={this.props.allSitePrettyNames}
+                        />
+                    </Col>
+                </Row>
             </Container>
         );
     }

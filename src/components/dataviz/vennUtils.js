@@ -1,8 +1,11 @@
 import { VennDiagram }  from 'venn.js';
 import * as d3 from 'd3';
 
-function createChart(sets) {
-    return VennDiagram().styled(false);
+function createChart(parameters) {
+    return VennDiagram()
+        .styled(false)
+        .width(parameters.width || 600)
+        .height(parameters.height || 500);
 }
 
 function renderChart(chart, sets, selector) {
