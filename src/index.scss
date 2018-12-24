@@ -18,12 +18,19 @@ code {
 /** SCHEMATIC IMAGES ***********************************************/
 #schematic-images {
 
-
+  background-image: url($schematic-img-base-path + 'schematic-base.png');
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 721px;
+  height: 659px;
 
   div {
     position: relative;
     top: 0px;
     left: 0px;
+    width: 721px;
+    height: 659px;
   }
 
   div.peritubular-capillary {

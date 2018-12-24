@@ -4,6 +4,9 @@ import { Col, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import union from 'lodash/union';
 import flattenDeep from 'lodash/flattenDeep';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+
+const IMG_SRC_PREFIX = '/atlas/img/schematic/';
 
 class SchematicViewer extends Component {
 
@@ -15,8 +18,6 @@ class SchematicViewer extends Component {
         this.state = {
             images: SchematicViewer.parseImages()
         };
-
-        console.log("+++ this.state.images", this.state.images);
     }
 
     onCellClick(cellName) {
@@ -41,12 +42,24 @@ class SchematicViewer extends Component {
         return union(flattenDeep(schematicImages));
     }
 
+    componentDidMount() {
+
+        console.log('+++ SchematicViewer.componentDidMount()');
+
+        this.state.images.map((image) => {
+            let img = document.createElement('img')
+                , src = IMG_SRC_PREFIX + image + '.png';
+            console.log('+++ downloading image', src);
+            img.setAttribute('src', src);
+        });
+    }
+
     render() {
         return (
             <Container id="schematic-viewer">
                 <Row>
                     <Col sm>
-                    <h1>Select a Cell Type</h1>
+                        <h1>Select a Cell Type</h1>
                         { schematic.root.map((structure) => {
                             //TODO add structure hover logic
 
@@ -71,6 +84,12 @@ class SchematicViewer extends Component {
                                 </li>
                             </ul>
                         })}
+                    </Col>
+                    <Col sm>
+                        <div id="schematic-images">
+                            <TransitionGroup>
+                            </TransitionGroup>
+                        </div>
                     </Col>
                 </Row>
             </Container>
