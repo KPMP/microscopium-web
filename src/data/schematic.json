@@ -1,51 +1,53 @@
 {
   "root": [
     {
-      "structure": "Endothelial",
+      "structureName":"Endothelial",
       "cells": [
-        "Peritubular capillary",
-        "Arteriole",
-        "Glomerular endothelial",
-        "Ascending vasa recta",
-        "Descending vasa recta"
+        { "cellName":"Peritubular capillary", "images": [] },
+        { "cellName":"Arteriole", "images": [] },
+        { "cellName":"Glomerular endothelial", "images": [] },
+        { "cellName":"Ascending vasa recta", "images": [] },
+        { "cellName":"Descending vasa recta", "images": [] }
       ]
     },
     {
-      "structure": "Glomerular",
+      "structureName":"Glomerular",
       "cells": [
-        "Mesangial cell",
-        "Podocyte"
+        { "cellName":"Mesangial cell", "images": [] },
+        { "cellName":"Podocyte", "images": [] }
       ]
     },
     {
-      "structure": "Immune",
+      "structureName":"Immune",
       "cells": [
-        "Macrophage",
-        "Monocyte",
-        "T cells"
+        { "cellName":"Macrophage", "images": [] },
+        { "cellName":"Monocyte", "images": [] },
+        { "cellName":"T cells", "images": [] }
       ]
     },
     {
-      "structure": "Interstitium",
-      "cells": []
+      "structureName":"Interstitium",
+      "cellName":"Interstitium",
+      "cells": [],
+      "images": []
     },
     {
-      "structure": "Other vascular",
+      "structureName":"Other vascular",
       "cells": [
-        "Vascular smooth muscle cells / pericytes"
+        { "cellName":"Vascular smooth muscle cells / pericytes", "images": [] }
       ]
     },
     {
-      "structure": "Tubular",
+      "structureName":"Tubular",
       "cells": [
-        "Connecting tubule",
-        "Descending loop of Henle",
-        "Distal tubule",
-        "Intercalated cells",
-        "Principal cells",
-        "Proximal tubule",
-        "Thick ascending loop of Henle",
-        "Thin ascending loop of Henle"
+        { "cellName":"Connecting tubule", "images": [] },
+        { "cellName":"Descending loop of Henle", "images": [] },
+        { "cellName":"Distal tubule", "images": [] },
+        { "cellName":"Intercalated cells", "images": [] },
+        { "cellName":"Principal cells", "images": [] },
+        { "cellName":"Proximal tubule", "images": [] },
+        { "cellName":"Thick ascending loop of Henle", "images": [] },
+        { "cellName":"Thin ascending loop of Henle",  "images": [] }
       ]
     }
   ]

@@ -22,16 +22,23 @@ class SchematicViewer extends Component {
                     <Col sm>
                     <h1>Select a Cell Type</h1>
                         { schematic.root.map((structure) => {
-                            let structureName = structure.structure;
+                            //TODO add structure hover logic
+
                             return <ul className="cell-structure-list">
                                 <li>
-                                    <span className="cell-structure-name">{structureName}</span>
+                                    { !structure.hasOwnProperty("cellName") ? (
+                                    <span className="cell-structure-name">{structure.structureName}</span>
+                                    ) : (
+                                    <Link to={`/data/${encodeURIComponent(structure.cellName)}`}
+                                          onClick={() => { this.onCellClick(structure.cellName)}}
+                                        >{structure.structureName}</Link>
+                                    ) }
                                     <ul className="cell-type-list">
-                                        {structure.cells.map((cellName) => {
+                                        {structure.cells.map((cell) => {
                                             return <li>
-                                                    <Link to={`/data/${encodeURIComponent(cellName)}`}
-                                                       onClick={() => { this.onCellClick(cellName)}}
-                                                       >{cellName}</Link>
+                                                    <Link to={`/data/${encodeURIComponent(cell.cellName)}`}
+                                                       onClick={() => { this.onCellClick(cell.cellName)}}
+                                                       >{cell.cellName}</Link>
                                                 </li>
                                         })}
                                     </ul>
