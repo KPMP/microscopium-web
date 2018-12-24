@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import union from 'lodash/union';
 import flattenDeep from 'lodash/flattenDeep';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
+//import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const IMG_SRC_PREFIX = '/atlas/img/schematic/';
 
@@ -17,6 +17,7 @@ class SchematicViewer extends Component {
 
         this.state = {
             images: SchematicViewer.parseImages()
+            , activeImages: []
         };
     }
 
@@ -43,13 +44,10 @@ class SchematicViewer extends Component {
     }
 
     componentDidMount() {
-
-        console.log('+++ SchematicViewer.componentDidMount()');
-
+        //Preload static image assets for the schematic nephron
         this.state.images.map((image) => {
             let img = document.createElement('img')
                 , src = IMG_SRC_PREFIX + image + '.png';
-            console.log('+++ downloading image', src);
             img.setAttribute('src', src);
         });
     }
@@ -60,36 +58,39 @@ class SchematicViewer extends Component {
                 <Row>
                     <Col sm>
                         <h1>Select a Cell Type</h1>
-                        { schematic.root.map((structure) => {
-                            //TODO add structure hover logic
-
-                            return <ul className="cell-structure-list">
+                        { schematic.root.map((structure) =>
+                            <ul className="cell-structure-list">
                                 <li>
                                     { !structure.hasOwnProperty("cellName") ? (
                                     <span className="cell-structure-name">{structure.structureName}</span>
                                     ) : (
                                     <Link to={`/data/${encodeURIComponent(structure.cellName)}`}
                                           onClick={() => { this.onCellClick(structure.cellName)}}
-                                        >{structure.structureName}</Link>
+                                          onMouseEnter={() => this.setState({ activeImages: structure.images })}
+                                        >{structure.structureName}
+                                        </Link>
                                     ) }
                                     <ul className="cell-type-list">
                                         {structure.cells.map((cell) => {
                                             return <li>
                                                     <Link to={`/data/${encodeURIComponent(cell.cellName)}`}
-                                                       onClick={() => { this.onCellClick(cell.cellName)}}
-                                                       >{cell.cellName}</Link>
+                                                          onClick={() => { this.onCellClick(cell.cellName)}}
+                                                          onMouseEnter={() => this.setState( { activeImages: cell.images })}
+                                                        >{cell.cellName}
+                                                        </Link>
                                                 </li>
                                         })}
                                     </ul>
                                 </li>
                             </ul>
-                        })}
+                        )}
                     </Col>
                     <Col sm>
-                        <div id="schematic-images">
-                            <TransitionGroup>
-                            </TransitionGroup>
-                        </div>
+                            <div id="schematic-images">
+                                { this.state.activeImages.map((image) =>
+                                    <div className={image} />
+                                )}
+                            </div>
                     </Col>
                 </Row>
             </Container>
