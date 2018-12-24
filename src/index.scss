@@ -15,6 +15,106 @@ code {
     monospace;
 }
 
+/** SCHEMATIC IMAGES ***********************************************/
+#schematic-images {
+
+  background-image: url($schematic-img-base-path + 'schematic-base.png');
+  position: relative;
+  top: 0px;
+  left: 0px;
+  width: 721px;
+  height: 659px;
+
+  div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 721px;
+    height: 659px;
+  }
+
+  div.peritubular-capillary {
+    background-image: url($schematic-img-base-path + 'peritubular-capillary.png');
+  }
+
+  div.arteriole {
+    background-image: url($schematic-img-base-path + 'arteriole.png');
+  }
+
+  div.glomerular-endothelial {
+    background-image: url($schematic-img-base-path + 'glomerular-endothelial.png');
+  }
+
+  div.ascending-vasa-recta {
+    background-image: url($schematic-img-base-path + 'ascending-vasa-recta.png');
+  }
+
+  div.descending-vasa-recta {
+    background-image: url($schematic-img-base-path + 'descending-vasa-recta.png');
+  }
+
+  div.mesangial-cell {
+    background-image: url($schematic-img-base-path + 'mesangial-cell.png');
+  }
+
+  div.podocyte {
+    background-image: url($schematic-img-base-path + 'podocyte.png');
+  }
+
+  div.macrophage {
+    background-image: url($schematic-img-base-path + 'macrophage.png');
+  }
+
+  div.monocyte {
+    background-image: url($schematic-img-base-path + 'monocyte.png');
+  }
+
+  div.t-cells {
+    background-image: url($schematic-img-base-path + 't-cells.png');
+  }
+
+  div.interstitium {
+    background-image: url($schematic-img-base-path + 'interstitium.png');
+  }
+
+  div.vascular-smooth {
+    background-image: url($schematic-img-base-path + 'vascular-smooth.png');
+  }
+
+  div.connecting-tubule {
+    background-image: url($schematic-img-base-path + 'connecting-tubule.png');
+  }
+
+  div.descending-loop {
+    background-image: url($schematic-img-base-path + 'descending-loop.png');
+  }
+
+  div.distal-tubule {
+    background-image: url($schematic-img-base-path + 'distal-tubule.png');
+  }
+
+  div.intercalated-cells {
+    background-image: url($schematic-img-base-path + 'intercalated-cells.png');
+  }
+
+  div.principal-cells {
+    background-image: url($schematic-img-base-path + 'principal-cells.png');
+  }
+
+  div.proximal-tubule {
+    background-image: url($schematic-img-base-path + 'proximal-tubule.png');
+  }
+
+  div.thick-ascending-loop {
+    background-image: url($schematic-img-base-path + 'thick-ascending-loop.png');
+  }
+
+  div.thin-ascending-loop {
+    background-image: url($schematic-img-base-path + 'thin-ascending-loop.png');
+  }
+}
+
+/** VENN SITE SELECTOR STYLES **************************************/
 .site-selector-group {
   max-width: 200px;
 
@@ -34,6 +134,7 @@ code {
   }
 }
 
+/** VENN DIAGRAM STYLES ********************************************/
 svg {
   g.venn-area[data-venn-sets="umich_sc"] {
     fill: rgba(50, 50, 255, 1);
