@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import schematic from '../../data/schematic';
 import { Col, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
+import union from 'lodash/union';
+import flattenDeep from 'lodash/flattenDeep';
 
 class SchematicViewer extends Component {
 
@@ -9,10 +11,34 @@ class SchematicViewer extends Component {
         super(props);
 
         this.onCellClick = this.onCellClick.bind(this);
+
+        this.state = {
+            images: SchematicViewer.parseImages()
+        };
+
+        console.log("+++ this.state.images", this.state.images);
     }
 
     onCellClick(cellName) {
         this.props.setSelectedCell(cellName);
+    }
+
+    static parseImages() {
+        let schematicImages = schematic.root.map((structure) => {
+            let structureImages = structure.cells.map((cell) =>
+                cell.hasOwnProperty("images")
+                ? cell.images
+                : []);
+
+            structureImages.push(
+                structure.hasOwnProperty("images")
+                    ? structure.images
+                    : []);
+
+            return structureImages;
+        });
+
+        return union(flattenDeep(schematicImages));
     }
 
     render() {

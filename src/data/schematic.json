@@ -3,51 +3,52 @@
     {
       "structureName":"Endothelial",
       "cells": [
-        { "cellName":"Peritubular capillary", "images": [] },
-        { "cellName":"Arteriole", "images": [] },
-        { "cellName":"Glomerular endothelial", "images": [] },
-        { "cellName":"Ascending vasa recta", "images": [] },
-        { "cellName":"Descending vasa recta", "images": [] }
+        { "cellName":"Peritubular capillary", "images": [ "peritubular-capillary" ] },
+        { "cellName":"Arteriole", "images": [ "arteriole" ] },
+        { "cellName":"Glomerular endothelial", "images": [ "glomerular-endothelial" ] },
+        { "cellName":"Ascending vasa recta", "images": [ "ascending-vasa-recta" ] },
+        { "cellName":"Descending vasa recta", "images": [ "descending-vasa-recta" ] }
       ]
     },
     {
       "structureName":"Glomerular",
+      "images": [ "glomerulus" ],
       "cells": [
-        { "cellName":"Mesangial cell", "images": [] },
-        { "cellName":"Podocyte", "images": [] }
+        { "cellName":"Mesangial cell", "images": [ "mesangial-cell" ] },
+        { "cellName":"Podocyte", "images": [ "podocyte" ] }
       ]
     },
     {
       "structureName":"Immune",
       "cells": [
-        { "cellName":"Macrophage", "images": [] },
-        { "cellName":"Monocyte", "images": [] },
-        { "cellName":"T cells", "images": [] }
+        { "cellName":"Macrophage", "images": [ "macrophage" ] },
+        { "cellName":"Monocyte", "images": [ "monocyte" ] },
+        { "cellName":"T cells", "images": [ "t-cells" ] }
       ]
     },
     {
       "structureName":"Interstitium",
       "cellName":"Interstitium",
       "cells": [],
-      "images": []
+      "images": [ "interstitial" ]
     },
     {
       "structureName":"Other vascular",
       "cells": [
-        { "cellName":"Vascular smooth muscle cells / pericytes", "images": [] }
+        { "cellName":"Vascular smooth muscle cells / pericytes", "images": [ "vascular-smooth" ] }
       ]
     },
     {
       "structureName":"Tubular",
       "cells": [
-        { "cellName":"Connecting tubule", "images": [] },
-        { "cellName":"Descending loop of Henle", "images": [] },
-        { "cellName":"Distal tubule", "images": [] },
-        { "cellName":"Intercalated cells", "images": [] },
-        { "cellName":"Principal cells", "images": [] },
-        { "cellName":"Proximal tubule", "images": [] },
-        { "cellName":"Thick ascending loop of Henle", "images": [] },
-        { "cellName":"Thin ascending loop of Henle",  "images": [] }
+        { "cellName":"Connecting tubule", "images": [ "connecting-tubule" ] },
+        { "cellName":"Descending loop of Henle", "images": [ "descending-loop" ] },
+        { "cellName":"Distal tubule", "images": [ "distal-tubule" ] },
+        { "cellName":"Intercalated cells", "images": [ "intercalated-cells" ] },
+        { "cellName":"Principal cells", "images": [ "principal-cells" ] },
+        { "cellName":"Proximal tubule", "images": [ "proximal-tubule" ] },
+        { "cellName":"Thick ascending loop of Henle", "images": [ "thick-ascending-loop" ] },
+        { "cellName":"Thin ascending loop of Henle",  "images": [ "thin-ascending-loop" ] }
       ]
     }
   ]
