@@ -34,11 +34,11 @@ class SiteVennDiagram extends Component {
                 if(!vennSet.parsed) {
                     vennSet.label = parseInt(vennSet.size).toString();
                     vennSet.parsed = true;
-                }
 
-                //If we are fixing the size of the venn, assign that value to this set
-                if(this.props.fixedSizeVenn > 0) {
-                    vennSet.size = this.props.fixedSizeVenn * (this.props.allSites.length / vennSet.sets.length);
+                    //If we are fixing the size of the venn, assign that value to this set
+                    if(this.props.fixedSizeVenn > 0) {
+                        vennSet.size = this.props.fixedSizeVenn * (this.props.allSites.length / vennSet.sets.length);
+                    }
                 }
             }
 

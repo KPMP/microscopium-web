@@ -171,17 +171,17 @@ svg {
     fill: rgba(255, 255, 255, 1);
   }
 
-  g.venn-area text.label tspan,
-  g.venn-intersection text.label tspan {
+  g.venn-area text, g.venn-area text tspan,
+  g.venn-intersection text, g.venn-intersection text tspan {
     color: black;
     fill: black;
     font-weight: bold;
     stroke: rgba(255, 255, 255, 0.5);
   }
 
-  g.venn-area[data-venn-sets="umich_sc"] text.label tspan,
-  g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] text.label tspan,
-  g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] text.label tspan {
+  g.venn-area[data-venn-sets="umich_sc"] text,g.venn-area[data-venn-sets="umich_sc"] text tspan,
+  g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] text, g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] text tspan,
+  g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] text, g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] text tspan {
     fill: white !important;
   }
 }
