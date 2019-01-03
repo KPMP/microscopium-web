@@ -84,6 +84,7 @@ class DataVizViewer extends Component {
                     </Col>
                     <Col sm={8}>
                         <GeneDataTable
+                            selectedCellName={this.props.selectedCell}
                             rows={this.getTableRows()}
                             allSites={this.props.allSites}
                             allSitesPrettyNames={this.props.allSitePrettyNames}
