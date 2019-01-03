@@ -30,7 +30,6 @@ class GeneDataTable extends Component {
     }
 
     onTableChange() {
-        console.log('+++ onTableChange');
         if (this.reactTable.current) {
             this.setState({
                 downloadData: this.getDownloadData()
@@ -40,13 +39,10 @@ class GeneDataTable extends Component {
 
     getDownloadData() {
         if(this.reactTable !== null && this.reactTable.current !== null) {
-            let output = getFromReactTable(this.reactTable);
-            console.log(this.state.downloadData);
-            console.log(output);
-            return output;
+            return getFromReactTable(this.reactTable);
         }
 
-        return '';
+        return [];
     }
 
     getRowCount() {
