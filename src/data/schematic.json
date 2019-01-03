@@ -30,7 +30,7 @@
       "structureName":"Interstitium",
       "cellName":"Interstitium",
       "cells": [],
-      "images": [ "interstitial" ]
+      "images": [ "fibroblast" ]
     },
     {
       "structureName":"Other vascular",
