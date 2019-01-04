@@ -57,6 +57,7 @@ class DataVizViewer extends Component {
                         <Button color="primary" active>Transcriptomics</Button>
                         <Button color="primary" disabled outline>Proteomics</Button>
                         <Button color="primary" disabled outline>Metabolomics</Button>
+                        <Button color="primary" disabled outline>Integrated</Button>
                     </ButtonGroup>
                 </Row>
                 <Row>
