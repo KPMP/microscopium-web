@@ -9,7 +9,7 @@ import SchematicViewerContainer from './components/schematic/SchematicViewerCont
 import DataVizViewerContainer from './components/dataviz/DataVizViewerContainer';
 import initialState from './initialState';
 import rootReducer from './reducers';
-import NavBar from "./components/nav/NavBar";
+import DemoNavBar from "./components/nav/DemoNavBar";
 
 /* INITIALIZE REDUX **************************************************************/
 const cacheStore = window.sessionStorage.getItem('redux-store');
@@ -34,12 +34,14 @@ class App extends Component {
     return (
         <Provider store={store}>
             <Container fluid>
-                <NavBar />
                 <HashRouter basename={`${process.env.PUBLIC_URL}`}>
-                    <Switch>
-                      <Route exact path="/" component={SchematicViewerContainer} />
-                      <Route path="/data/:cellName" component={DataVizViewerContainer} />
-                    </Switch>
+                    <div>
+                        <DemoNavBar />
+                        <Switch>
+                          <Route exact path="/" component={SchematicViewerContainer} />
+                          <Route path="/data/:cellName" component={DataVizViewerContainer} />
+                        </Switch>
+                    </div>
                 </HashRouter>
             </Container>
         </Provider>

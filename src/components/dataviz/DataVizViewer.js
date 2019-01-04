@@ -50,15 +50,17 @@ class DataVizViewer extends Component {
         return (
             <Container  id="data-viewer">
                 <Row>
-                    <h4>{this.props.selectedCell} cell gene expression</h4>
-                </Row>
-                <Row>
-                    <ButtonGroup>
-                        <Button color="primary" active>Transcriptomics</Button>
-                        <Button color="primary" disabled outline>Proteomics</Button>
-                        <Button color="primary" disabled outline>Metabolomics</Button>
-                        <Button color="primary" disabled outline>Integrated</Button>
-                    </ButtonGroup>
+                    <Col className="mr-auto">
+                        <h4>{this.props.selectedCell} gene expression</h4>
+                    </Col>
+                    <Col className="col-auto">
+                        <ButtonGroup>
+                            <Button color="primary" active>Transcriptomics</Button>
+                            <Button color="primary" disabled outline>Proteomics</Button>
+                            <Button color="primary" disabled outline>Metabolomics</Button>
+                            <Button color="primary" disabled outline>Integrated</Button>
+                        </ButtonGroup>
+                    </Col>
                 </Row>
                 <Row>
                     <Col sm={4}>
