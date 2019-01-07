@@ -18,25 +18,43 @@ class GeneDataTable extends Component {
 
         this.getColumns = this.getColumns.bind(this);
         this.getRowCount = this.getRowCount.bind(this);
-        this.onTableChange = this.onTableChange.bind(this);
         this.getDownloadData = this.getDownloadData.bind(this);
+        this.onSortedChange = this.onSortedChange.bind(this);
+        this.onFilteredChange = this.onFilteredChange.bind(this);
+        this.resetFilterAndSort = this.resetFilterAndSort.bind(this);
         this.reactTable = React.createRef();
 
         this.state = {
+            sorted: [],
+            filtered: [],
             downloadData: []
         };
     }
 
     componentDidMount() {
-        this.onTableChange();
+        this.resetFilterAndSort();
     }
 
-    onTableChange() {
-        if (this.reactTable.current) {
-            this.setState({
-                downloadData: this.getDownloadData()
-            });
-        }
+    resetFilterAndSort() {
+        this.setState({
+            sorted: [],
+            filtered: [],
+            downloadData: this.getDownloadData()
+        });
+    }
+
+    onSortedChange(sorted) {
+        this.setState({
+            sorted: sorted,
+            downloadData: this.getDownloadData()
+        });
+    }
+
+    onFilteredChange(filtered) {
+        this.setState({
+            filtered: filtered,
+            downloadData: this.getDownloadData()
+        });
     }
 
     getDownloadData() {
@@ -218,8 +236,10 @@ class GeneDataTable extends Component {
                     <ReactTable
                         data={this.props.rows}
                         ref={this.reactTable}
-                        onSortedChange={this.onTableChange}
-                        onFilteredChange={this.onTableChange}
+                        sorted={this.state.sorted}
+                        filtered={this.state.filtered}
+                        onSortedChange={this.onSortedChange}
+                        onFilteredChange={this.onFilteredChange}
                         columns={this.getColumns()}
                         defaultPageSize={10}
                         filterable
