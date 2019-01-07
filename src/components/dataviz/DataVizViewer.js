@@ -4,6 +4,7 @@ import GeneDataTable from "./GeneDataTable";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import SiteVennDiagram from './SiteVennDiagram';
+import Instruction from './Instruction';
 
 import atlas from '../../data/atlas';
 
@@ -71,11 +72,16 @@ class DataVizViewer extends Component {
                 <Row className="page-charts">
                     <Col sm={4} id="venn-diagram">
                         <Row className="column-header venn-header align-middle">
-                            <Button outline tag="a" className="instruction">
-                                <FontAwesomeIcon
-                                    icon={faInfoCircle}
-                                    size="sm"/>
-                            </Button>
+                            <Instruction
+                                id="venn-diagram-instruction"
+                                title="Reading the Venn Diagram"
+                                placement="bottom">
+                                <ul>
+                                    <li>This shows the total number of expressed genes measured by each TIS.</li>
+                                    <li>Changes to the Data Table do not affect this Venn diagram and vise versa.</li>
+                                    <li>To show or hide a TIS’s values, click its name in the legend below.  At least 1 site must be selected.</li>
+                                </ul>
+                            </Instruction>
                             &nbsp;
                             <h6>Differentially expressed genes</h6>
                         </Row>
@@ -98,13 +104,10 @@ class DataVizViewer extends Component {
                                         onClick={() => {this.onSiteClick(siteName)}} >
                                         {this.props.allSitePrettyNames[siteName]}
                                         </Button>
-
-
-
                                     </Row>);
                             })}
                         </Row>
-                        <Row className="bottom-spacer"></Row>
+                        <Row className="bottom-spacer" />
                     </Col>
                     <GeneDataTable
                         selectedCellName={this.props.selectedCell}

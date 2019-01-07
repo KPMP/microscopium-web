@@ -5,8 +5,7 @@ import { Button, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import "react-table/react-table.css";
 import { getFromReactTable } from '../../data/downloadUtil';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import Instruction from './Instruction';
 
 const NO_ENTRY = "-";
 const P_VALUE = "P Value";
@@ -182,11 +181,26 @@ class GeneDataTable extends Component {
             <Col sm={8} id="gene-data-table">
                 <Row className="column-header">
                     <Col className="mr-auto my-auto">
-                        <Button outline tag="a" className="instruction">
-                            <FontAwesomeIcon
-                                icon={faInfoCircle}
-                                size="sm"/>
-                        </Button>
+                        <Instruction
+                            id="data-table-instruction"
+                            title="Using the Gene Expression Data Table"
+                            placement="bottom"
+                            offset="50%p">
+                            <div>
+                                <p>Shows the expressed gene measurements considered significant by one or more TIS.
+                                Changes to the Venn do not affect this Table and vice versa. Click on a FC or
+                                    P Value column title to sort the entire table by that column.</p>
+                                <p>Under each column name is a filter input.
+                                Filters accept values given in the list below.
+                                After you have sorted and filtered the table to your liking, click “Download CSV”
+                                    to download the data table in its current sort and filter state.</p>
+                                <ul>
+                                    <li>+ to exclude genes not measured by this TIS.</li>
+                                    <li>- to exclude genes measured by this TIS.</li>
+                                    <li>&gt; or &lt; and a number to filter by values above or below the filter criteria. Example: &lt;0.0e-12</li>
+                                </ul>
+                            </div>
+                        </Instruction>
                         &nbsp;
                         <h6>Showing { this.getRowCount() } Genes</h6>
                     </Col>
@@ -213,7 +227,7 @@ class GeneDataTable extends Component {
                         showPageSizeOptions={false}
                     />
                 </Row>
-                <Row className="bottom-spacer"></Row>
+                <Row className="bottom-spacer" />
             </Col>
         );
     }
