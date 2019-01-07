@@ -177,10 +177,10 @@ class GeneDataTable extends Component {
 
     render() {
         return (
-            <div id="gene-data-table">
-                <Row>
-                    <Col className="mr-auto">
-                        Showing { this.getRowCount() } Genes
+            <Col sm={8} id="gene-data-table">
+                <Row className="column-header">
+                    <Col className="mr-auto my-auto">
+                        <h6>Showing { this.getRowCount() } Genes</h6>
                     </Col>
                     <Col className="col-auto">
                         <CSVLink
@@ -205,7 +205,8 @@ class GeneDataTable extends Component {
                         showPageSizeOptions={false}
                     />
                 </Row>
-            </div>
+                <Row className="bottom-spacer"></Row>
+            </Col>
         );
     }
 }

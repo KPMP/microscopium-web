@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, ButtonGroup, Button, Input, InputGroup, InputGroupText, InputGroupAddon } from 'reactstrap';
+import { Container, Col, Row, ButtonGroup, Button, Input } from 'reactstrap';
 import GeneDataTable from "./GeneDataTable";
 import SiteVennDiagram from './SiteVennDiagram';
 
@@ -35,7 +35,7 @@ class DataVizViewer extends Component {
         let sites = this.props.selectedSites
             , siteIsSelected = sites.indexOf(siteName);
 
-        if(siteIsSelected > -1) {
+        if(siteIsSelected > -1 && sites.length > 1) {
             sites.splice(siteIsSelected, 1);
         }
 
@@ -48,10 +48,10 @@ class DataVizViewer extends Component {
 
     render() {
         return (
-            <Container  id="data-viewer">
-                <Row>
-                    <Col className="mr-auto">
-                        <h4>{this.props.selectedCell} gene expression</h4>
+            <Container id="data-viewer">
+                <Row className="page-header">
+                    <Col className="mr-auto my-auto">
+                        <h5>{this.props.selectedCell} gene expression</h5>
                     </Col>
                     <Col className="col-auto">
                         <ButtonGroup>
@@ -62,37 +62,44 @@ class DataVizViewer extends Component {
                         </ButtonGroup>
                     </Col>
                 </Row>
-                <Row>
-                    <Col sm={4}>
-                        <h6>Differentially expressed genes</h6>
+                <Row className="page-charts">
+                    <Col sm={4} id="venn-diagram">
+                        <Row className="column-header venn-header align-middle">
+                            <h6>Differentially expressed genes</h6>
+                        </Row>
+                        <Row>
                         <SiteVennDiagram
                             sets={this.getVennSets()}
                             sites={this.props.selectedSites}
                             allSites={this.props.allSites}
                             fixedSizeVenn={this.props.fixedSizeVenn}
                         />
-                        <div class="site-selector-group">
+                        </Row>
+                        <Row className="site-selector-group no-gutters">
                             { this.props.allSites.map((siteName) => {
                                 return (
-                                    <p>
-                                    <Input
-                                        type="checkbox"
-                                        class="site-selector-input"
-                                        checked={this.props.selectedSites.indexOf(siteName) > -1}
-                                        onClick={() => {this.onSiteClick(siteName)}} />
-                                    <span class={`site-selector-label ${siteName}`}>{this.props.allSitePrettyNames[siteName]}</span>
-                                    </p>);
+                                    <Row className="no-gutters w-100">
+                                    <Button
+                                        className={`site-selector-label ${siteName}`}
+                                        active={this.props.selectedSites.indexOf(siteName) > -1}
+                                        outline
+                                        onClick={() => {this.onSiteClick(siteName)}} >
+                                        {this.props.allSitePrettyNames[siteName]}
+                                        </Button>
+
+
+
+                                    </Row>);
                             })}
-                        </div>
+                        </Row>
+                        <Row className="bottom-spacer"></Row>
                     </Col>
-                    <Col sm={8}>
-                        <GeneDataTable
-                            selectedCellName={this.props.selectedCell}
-                            rows={this.getTableRows()}
-                            allSites={this.props.allSites}
-                            allSitesPrettyNames={this.props.allSitePrettyNames}
-                        />
-                    </Col>
+                    <GeneDataTable
+                        selectedCellName={this.props.selectedCell}
+                        rows={this.getTableRows()}
+                        allSites={this.props.allSites}
+                        allSitesPrettyNames={this.props.allSitePrettyNames}
+                    />
                 </Row>
             </Container>
         );

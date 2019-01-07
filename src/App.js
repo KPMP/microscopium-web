@@ -33,17 +33,15 @@ class App extends Component {
   render() {
     return (
         <Provider store={store}>
-            <Container fluid>
-                <HashRouter basename={`${process.env.PUBLIC_URL}`}>
-                    <div>
-                        <DemoNavBar />
-                        <Switch>
-                          <Route exact path="/" component={SchematicViewerContainer} />
-                          <Route path="/data/:cellName" component={DataVizViewerContainer} />
-                        </Switch>
-                    </div>
-                </HashRouter>
-            </Container>
+            <HashRouter basename={`${process.env.PUBLIC_URL}`}>
+                <Container fluid>
+                    <DemoNavBar />
+                    <Switch>
+                      <Route exact path="/" component={SchematicViewerContainer} />
+                      <Route path="/data/:cellName" component={DataVizViewerContainer} />
+                    </Switch>
+                </Container>
+            </HashRouter>
         </Provider>
     );
   }

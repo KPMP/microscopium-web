@@ -8,6 +8,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /** APP STYLES **/
+  background-color: #FAFBFC;
 }
 
 code {
@@ -116,21 +119,29 @@ code {
 
 /** VENN SITE SELECTOR STYLES **************************************/
 .site-selector-group {
-  max-width: 200px;
+  max-width: 300px;
+  margin-top: 20px;
 
-  .umich_sc {
-    background: rgba(50, 50, 255, 1);
+  .umich_sc.active {
+    background: rgba(50, 50, 255, 1) !important;
     color: white;
   }
 
-  .ucsf_sc {
-    background: rgba(255, 50, 50, 1);
+  .ucsf_sc.active {
+    background: rgba(255, 50, 50, 1) !important;
     color: white;
   }
 
-  .ucsd_sn {
-    background: rgba(50, 255, 50, 1);
+  .ucsd_sn.active {
+    background: rgba(50, 255, 50, 1) !important;
     color: white;
+  }
+
+  .site-selector-label {
+    width: 100%;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 3px;
   }
 }
 
@@ -186,13 +197,6 @@ svg {
   }
 }
 
-#gene-data-table {
-  .ReactTable {
-    width: 100%;
-    margin: auto 16px;
-  }
-}
-
 /** COPY PASTA FROM DELPHINUS FOR HEADER TREATMENT *****************/
 #demo-text {
   line-height: $header-height;
@@ -226,6 +230,63 @@ svg {
 #schematic-viewer, #data-viewer {
   position: relative;
   top: 60px;
+}
+
+#data-viewer {
+
+  .header-row {
+    height: 38px;
+    margin-left: 15px;
+  }
+
+  .my-auto h4, .my-auto h5, .my-auto h6 {
+    display: inline;
+    color: rgba(55, 64, 80, 1);
+  }
+
+  .page-header {
+    padding: 20px 0px;
+  }
+
+  .column-header {
+    padding: 20px 0px;
+    height: 80px;
+  }
+
+  .venn-header>h6 {
+    display: inline;
+    margin: auto 0px;
+  }
+
+  .bottom-spacer {
+    height: 15px;
+  }
+
+  #venn-diagram {
+    padding-left: 30px;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 0px 0px 3px;
+    border-right: 0px;
+  }
+
+  #gene-data-table {
+
+    border: 1px solid #CCCCCC;
+    border-radius: 0px 3px 3px 0px;
+
+    .ReactTable {
+      width: 100%;
+      margin: auto 16px;
+    }
+  }
+
+  .page-charts {
+
+    background-color: #FFFFFF;
+
+    >[class*="col-"] {
+    }
+  }
 }
 
 .nav-container {
