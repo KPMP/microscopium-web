@@ -306,6 +306,14 @@ svg {
   }
 }
 
+.popover {
+  .popover-body {
+    ul {
+      padding-left: 10px;
+    }
+  }
+}
+
 .instruction-wrapper {
   display: inline-block;
 }
