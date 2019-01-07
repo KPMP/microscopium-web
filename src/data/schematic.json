@@ -3,8 +3,6 @@
     {
       "structureName":"Endothelial",
       "cells": [
-        { "cellName":"Peritubular capillary", "images": [ "peritubular-capillary" ] },
-        { "cellName":"Arteriole", "images": [ "arteriole" ] },
         { "cellName":"Glomerular endothelial", "images": [ "glomerular-endothelial" ] },
         { "cellName":"Ascending vasa recta", "images": [ "ascending-vasa-recta" ] },
         { "cellName":"Descending vasa recta", "images": [ "descending-vasa-recta" ] }
@@ -27,13 +25,13 @@
       ]
     },
     {
-      "structureName":"Interstitium",
-      "cellName":"Interstitium",
+      "structureName":"Interstitium / Fibroblasts",
+      "cellName":"Interstitium / Fibroblasts",
       "cells": [],
       "images": [ "fibroblast" ]
     },
     {
-      "structureName":"Other vascular",
+      "structureName":"Vascular",
       "cells": [
         { "cellName":"Vascular smooth muscle cells / pericytes", "images": [ "vascular-smooth" ] }
       ]
