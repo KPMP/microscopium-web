@@ -19,7 +19,6 @@ class Instruction extends Component {
     }
 
     handleClick(e) {
-        console.log('handleClick', this.props.id, this.node);
         if(!this.node.current.contains(e.target)) {
             this.setState({
                 isOpen: false
@@ -34,12 +33,10 @@ class Instruction extends Component {
     }
 
     componentDidMount() {
-        console.log('componentDidMount', this.props.id);
         document.body.addEventListener('mousedown', this.handleClick, false);
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount', this.props.id);
         document.body.removeEventListener('mousedown', this.handleClick, false);
     }
 
