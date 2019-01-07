@@ -65,7 +65,8 @@ class DataVizViewer extends Component {
                     </Col>
                 </Row>
                 <Row className="page-instructions">
-                    These are on-screen instructions.  Click on the info icons to get contextual help.
+                    <p><em>Left</em>: The Venn diagram shows how many genes were found to be expressed by this cell type ({this.props.selectedCell}) at each Tissue Interrogation Site (TIS).</p>
+                    <br/><p><em>Right</em>: The data table shows every expressed gene as measured by each TIS.  When a gene was not measured or found significant by a TIS, its values will show as "-" in the table.</p>
                 </Row>
                 <Row className="page-charts">
                     <Col sm={4} id="venn-diagram">
