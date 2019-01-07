@@ -230,22 +230,23 @@ svg {
 #schematic-viewer, #data-viewer {
   position: relative;
   top: 60px;
-}
-
-#data-viewer {
 
   .header-row {
     height: 38px;
     margin-left: 15px;
   }
 
+  h4, h5, h6 {
+    color: rgba(55, 64, 80, 1);
+  }
+
   .my-auto h4, .my-auto h5, .my-auto h6 {
     display: inline;
-    color: rgba(55, 64, 80, 1);
   }
 
   .page-header {
     padding: 20px 0px;
+    height: 80px;
   }
 
   .column-header {
@@ -262,17 +263,18 @@ svg {
     height: 15px;
   }
 
-  #venn-diagram {
+  .left-border-column, #venn-diagram {
     padding-left: 30px;
     border: 1px solid #CCCCCC;
     border-radius: 3px 0px 0px 3px;
     border-right: 0px;
+    background-color: #FFFFFF;
   }
 
-  #gene-data-table {
-
+  .right-border-column, #gene-data-table {
     border: 1px solid #CCCCCC;
     border-radius: 0px 3px 3px 0px;
+    background-color: #FFFFFF;
 
     .ReactTable {
       width: 100%;
@@ -280,11 +282,20 @@ svg {
     }
   }
 
-  .page-charts {
+  .cell-structure-list {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: 20px;
+    font-size: small;
 
-    background-color: #FFFFFF;
+    .cell-structure-name {
+      font-weight: bold;
+    }
 
-    >[class*="col-"] {
+    .cell-type-list {
+      list-style-type: none;
+      padding-left: 20px;
+      font-size: small;
     }
   }
 }

@@ -55,16 +55,21 @@ class SchematicViewer extends Component {
     render() {
         return (
             <Container id="schematic-viewer">
+                <Row className="page-header align-middle">
+                    <Col className="mr-auto my-auto">
+                        <h5>Select a cell type</h5>
+                    </Col>
+                </Row>
                 <Row>
-                    <Col sm>
-                        <h1>Select a Cell Type</h1>
+                    <Col sm className="left-border-column">
                         { schematic.root.map((structure) =>
                             <ul className="cell-structure-list">
                                 <li>
                                     { !structure.hasOwnProperty("cellName") ? (
                                     <span className="cell-structure-name">{structure.structureName}</span>
                                     ) : (
-                                    <Link to={`/data/${encodeURIComponent(structure.cellName)}`}
+                                    <Link className="cell-structure-name"
+                                          to={`/data/${encodeURIComponent(structure.cellName)}`}
                                           onClick={() => { this.onCellClick(structure.cellName)}}
                                           onMouseEnter={() => this.setState({ activeImages: structure.images })}
                                         >{structure.structureName}
@@ -85,7 +90,7 @@ class SchematicViewer extends Component {
                             </ul>
                         )}
                     </Col>
-                    <Col sm>
+                    <Col sm className="right-border-column">
                             <div id="schematic-images">
                                 { this.state.activeImages.map((image) =>
                                     <div className={image} />
