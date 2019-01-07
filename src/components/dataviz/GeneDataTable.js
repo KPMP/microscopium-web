@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { CSVLink } from 'react-csv';
 import ReactTable from 'react-table';
-import { Row, Col } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import "react-table/react-table.css";
 import { getFromReactTable } from '../../data/downloadUtil';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const NO_ENTRY = "-";
 const P_VALUE = "P Value";
@@ -180,6 +182,12 @@ class GeneDataTable extends Component {
             <Col sm={8} id="gene-data-table">
                 <Row className="column-header">
                     <Col className="mr-auto my-auto">
+                        <Button outline tag="a" className="instruction">
+                            <FontAwesomeIcon
+                                icon={faInfoCircle}
+                                size="sm"/>
+                        </Button>
+                        &nbsp;
                         <h6>Showing { this.getRowCount() } Genes</h6>
                     </Col>
                     <Col className="col-auto">

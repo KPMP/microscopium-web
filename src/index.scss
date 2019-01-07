@@ -291,6 +291,14 @@ svg {
       font-size: small;
     }
   }
+
+  .page-instructions {
+    padding: 20px;
+  }
+
+  .btn.instruction {
+    color: #0069D9;
+  }
 }
 
 .nav-container {
@@ -318,6 +326,6 @@ svg {
   }
 
   #feedback-button {
-    margin-top: 10px;
+    margin-left: 20px;
   }
 }

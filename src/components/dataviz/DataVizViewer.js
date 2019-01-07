@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Col, Row, ButtonGroup, Button, Input } from 'reactstrap';
+import { Card, CardBody, CardTitle, CardText, Container, Col, Row, ButtonGroup, Button, Input } from 'reactstrap';
 import GeneDataTable from "./GeneDataTable";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import SiteVennDiagram from './SiteVennDiagram';
 
 import atlas from '../../data/atlas';
@@ -62,9 +64,18 @@ class DataVizViewer extends Component {
                         </ButtonGroup>
                     </Col>
                 </Row>
+                <Row className="page-instructions">
+                    These are on-screen instructions.  Click on the info icons to get contextual help.
+                </Row>
                 <Row className="page-charts">
                     <Col sm={4} id="venn-diagram">
                         <Row className="column-header venn-header align-middle">
+                            <Button outline tag="a" className="instruction">
+                                <FontAwesomeIcon
+                                    icon={faInfoCircle}
+                                    size="sm"/>
+                            </Button>
+                            &nbsp;
                             <h6>Differentially expressed genes</h6>
                         </Row>
                         <Row>

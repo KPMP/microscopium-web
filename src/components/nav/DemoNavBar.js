@@ -28,7 +28,7 @@ class DemoNavBar extends Component {
                         <NavLink disabled>Pathology</NavLink>
                     </NavItem>
                     <NavItem>
-                        <Button color="primary" onClick={() => window.open("https://goo.gl/forms/WkyC7PZM8AIe3NoI3", "_blank")}>Send Feedback</Button>
+                        <Button id="feedback-button" color="primary" onClick={() => window.open("https://goo.gl/forms/WkyC7PZM8AIe3NoI3", "_blank")}>Send Feedback</Button>
                     </NavItem>
                 </Nav>
             </Navbar>
