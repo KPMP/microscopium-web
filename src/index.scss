@@ -186,6 +186,13 @@ svg {
   }
 }
 
+#gene-data-table {
+  .ReactTable {
+    width: 100%;
+    margin: auto 16px;
+  }
+}
+
 /** COPY PASTA FROM DELPHINUS FOR HEADER TREATMENT *****************/
 #demo-text {
   line-height: $header-height;
@@ -242,6 +249,7 @@ svg {
   .navbar-brand {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+    margin-right: 38px;
   }
 
   #feedback-button {

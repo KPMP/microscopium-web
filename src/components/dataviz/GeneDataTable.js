@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { CSVLink } from 'react-csv';
 import ReactTable from 'react-table';
+import { Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import "react-table/react-table.css";
 import { getFromReactTable } from '../../data/downloadUtil';
@@ -176,28 +177,34 @@ class GeneDataTable extends Component {
 
     render() {
         return (
-            <div>
-                <span>
-                    Showing { this.getRowCount() } Genes
-                </span>
-                <CSVLink
-                    className="btn btn-primary"
-                    data={this.state.downloadData}
-                    filename={this.props.selectedCellName + ' Filtered.csv'}
-                    target="_blank"
-                    >Download CSV
-                </CSVLink>
-                <ReactTable
-                    data={this.props.rows}
-                    ref={this.reactTable}
-                    onSortedChange={this.onTableChange}
-                    onFilteredChange={this.onTableChange}
-                    columns={this.getColumns()}
-                    defaultPageSize={10}
-                    filterable
-                    className="-striped -highlight"
-                    showPageSizeOptions={false}
-                />
+            <div id="gene-data-table">
+                <Row>
+                    <Col className="mr-auto">
+                        Showing { this.getRowCount() } Genes
+                    </Col>
+                    <Col className="col-auto">
+                        <CSVLink
+                            className="btn btn-primary"
+                            data={this.state.downloadData}
+                            filename={this.props.selectedCellName + ' Filtered.csv'}
+                            target="_blank"
+                            >Download CSV
+                        </CSVLink>
+                    </Col>
+                </Row>
+                <Row>
+                    <ReactTable
+                        data={this.props.rows}
+                        ref={this.reactTable}
+                        onSortedChange={this.onTableChange}
+                        onFilteredChange={this.onTableChange}
+                        columns={this.getColumns()}
+                        defaultPageSize={10}
+                        filterable
+                        className="-striped -highlight"
+                        showPageSizeOptions={false}
+                    />
+                </Row>
             </div>
         );
     }
