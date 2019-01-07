@@ -37,9 +37,25 @@ class GeneDataTable extends Component {
 
     resetFilterAndSort() {
         this.setState({
-            sorted: [],
-            filtered: [],
-            downloadData: this.getDownloadData()
+            sorted: [
+                {
+                    id: "f_umich_sc_p_val_adj",
+                    desc: false
+                },
+                {
+                    id: "f_ucsf_sc_p_val_adj",
+                    desc: false
+                },
+                {
+                    id: "f_ucsd_sn_p_val_adj",
+                    desc: false
+                }
+            ],
+            filtered: []
+        });
+
+        this.setState({
+           downloadData: this.getDownloadData()
         });
     }
 
@@ -257,7 +273,8 @@ GeneDataTable.propTypes = {
     selectedCellName: PropTypes.string,
     rows: PropTypes.string,
     allSites: PropTypes.arrayOf(PropTypes.string),
-    allSitesPrettyNames: PropTypes.arrayOf(PropTypes.string)
+    allSitesPrettyNames: PropTypes.arrayOf(PropTypes.string),
+    defaultSortOrder: PropTypes.arrayOf(PropTypes.string).isRequired
 };
 
 export default GeneDataTable;
