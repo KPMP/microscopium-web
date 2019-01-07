@@ -294,11 +294,24 @@ svg {
 
   .page-instructions {
     padding: 20px;
+    font-size: small;
   }
 
-  .btn.instruction {
+  a.btn.instruction {
     color: #0069D9;
   }
+
+  a.btn.instruction:hover {
+    color: #FFFFFF;
+  }
+}
+
+.instruction-wrapper {
+  display: inline-block;
+}
+
+.data-table-instruction-popover {
+  max-width: 700px;
 }
 
 .nav-container {
