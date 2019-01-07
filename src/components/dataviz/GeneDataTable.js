@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { CSVLink } from 'react-csv';
 import ReactTable from 'react-table';
+import { Button, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
 import "react-table/react-table.css";
 import { getFromReactTable } from '../../data/downloadUtil';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 const NO_ENTRY = "-";
 const P_VALUE = "P Value";
@@ -176,29 +179,42 @@ class GeneDataTable extends Component {
 
     render() {
         return (
-            <div>
-                <span>
-                    Showing { this.getRowCount() } Genes
-                </span>
-                <CSVLink
-                    className="btn btn-primary"
-                    data={this.state.downloadData}
-                    filename={this.props.selectedCellName + ' Filtered.csv'}
-                    target="_blank"
-                    >Download CSV
-                </CSVLink>
-                <ReactTable
-                    data={this.props.rows}
-                    ref={this.reactTable}
-                    onSortedChange={this.onTableChange}
-                    onFilteredChange={this.onTableChange}
-                    columns={this.getColumns()}
-                    defaultPageSize={10}
-                    filterable
-                    className="-striped -highlight"
-                    showPageSizeOptions={false}
-                />
-            </div>
+            <Col sm={8} id="gene-data-table">
+                <Row className="column-header">
+                    <Col className="mr-auto my-auto">
+                        <Button outline tag="a" className="instruction">
+                            <FontAwesomeIcon
+                                icon={faInfoCircle}
+                                size="sm"/>
+                        </Button>
+                        &nbsp;
+                        <h6>Showing { this.getRowCount() } Genes</h6>
+                    </Col>
+                    <Col className="col-auto">
+                        <CSVLink
+                            className="btn btn-primary"
+                            data={this.state.downloadData}
+                            filename={this.props.selectedCellName + ' Filtered.csv'}
+                            target="_blank"
+                            >Download CSV
+                        </CSVLink>
+                    </Col>
+                </Row>
+                <Row>
+                    <ReactTable
+                        data={this.props.rows}
+                        ref={this.reactTable}
+                        onSortedChange={this.onTableChange}
+                        onFilteredChange={this.onTableChange}
+                        columns={this.getColumns()}
+                        defaultPageSize={10}
+                        filterable
+                        className="-striped -highlight"
+                        showPageSizeOptions={false}
+                    />
+                </Row>
+                <Row className="bottom-spacer"></Row>
+            </Col>
         );
     }
 }

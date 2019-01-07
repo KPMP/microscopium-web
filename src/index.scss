@@ -8,6 +8,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /** APP STYLES **/
+  background-color: #FAFBFC;
 }
 
 code {
@@ -116,59 +119,66 @@ code {
 
 /** VENN SITE SELECTOR STYLES **************************************/
 .site-selector-group {
-  max-width: 200px;
+  max-width: 300px;
+  margin-top: 20px;
 
-  .umich_sc {
-    background: rgba(50, 50, 255, 1);
-    color: white;
+  .umich_sc.active {
+    background: #D4E3F5 !important;
   }
 
-  .ucsf_sc {
-    background: rgba(255, 50, 50, 1);
-    color: white;
+  .ucsf_sc.active {
+    background: #EBC1C6 !important;
   }
 
-  .ucsd_sn {
-    background: rgba(50, 255, 50, 1);
-    color: white;
+  .ucsd_sn.active {
+    background: #EFF8E2 !important;
+  }
+
+  .site-selector-label {
+    width: 100%;
+    border-radius: 3px;
+    padding: 5px 10px;
+    margin: 3px;
+    color: #424B5A !important;
   }
 }
 
 /** VENN DIAGRAM STYLES ********************************************/
 svg {
   g.venn-area[data-venn-sets="umich_sc"] {
-    fill: rgba(50, 50, 255, 1);
+    fill: #D4E3F5;
+    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsf_sc"] {
-    fill: rgba(255, 50, 50, 1);
+    fill: #EBC1C6;
+    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsd_sn"] {
-    fill: rgba(50, 255, 50, 1);
+    fill: #EFF8E2;
+    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] {
-    fill: rgba(173, 65, 240, 1);
-    stroke: rgba(255, 255, 255, 0.25);
-    stroke-width: 2px;
+    fill: #CAACBF;
+    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsd_sn_ucsf_sc"] {
-    fill: rgba(231, 240, 65, 1);
-    stroke: rgba(255, 255, 255, 0.25);
-    stroke-width: 2px;
+    fill: #DEBBB0;
+    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] {
-    fill: rgba(65, 240, 205, 1);
-    stroke: rgba(255, 255, 255, 0.25);
-    stroke-width: 2px;
+    fill: #CFE3DA;
+    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsd_sn_ucsf_sc_umich_sc"],
   g.venn-area[data-venn-sets="ucsd_sn_umich_sc_ucsf_sc"] {
-    fill: rgba(255, 255, 255, 1);
+    fill: #C6ABAB;
+    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area text, g.venn-area text tspan,
@@ -177,12 +187,6 @@ svg {
     fill: black;
     font-weight: bold;
     stroke: rgba(255, 255, 255, 0.5);
-  }
-
-  g.venn-area[data-venn-sets="umich_sc"] text,g.venn-area[data-venn-sets="umich_sc"] text tspan,
-  g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] text, g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] text tspan,
-  g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] text, g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] text tspan {
-    fill: white !important;
   }
 }
 
@@ -219,6 +223,82 @@ svg {
 #schematic-viewer, #data-viewer {
   position: relative;
   top: 60px;
+
+  .header-row {
+    height: 38px;
+    margin-left: 15px;
+  }
+
+  h4, h5, h6 {
+    color: rgba(55, 64, 80, 1);
+  }
+
+  .my-auto h4, .my-auto h5, .my-auto h6 {
+    display: inline;
+  }
+
+  .page-header {
+    padding: 20px 0px;
+    height: 80px;
+  }
+
+  .column-header {
+    padding: 20px 0px;
+    height: 80px;
+  }
+
+  .venn-header>h6 {
+    display: inline;
+    margin: auto 0px;
+  }
+
+  .bottom-spacer {
+    height: 15px;
+  }
+
+  .left-border-column, #venn-diagram {
+    padding-left: 30px;
+    border: 1px solid #CCCCCC;
+    border-radius: 3px 0px 0px 3px;
+    border-right: 0px;
+    background-color: #FFFFFF;
+  }
+
+  .right-border-column, #gene-data-table {
+    border: 1px solid #CCCCCC;
+    border-radius: 0px 3px 3px 0px;
+    background-color: #FFFFFF;
+
+    .ReactTable {
+      width: 100%;
+      margin: auto 16px;
+    }
+  }
+
+  .cell-structure-list {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: 20px;
+    font-size: small;
+
+    .cell-structure-name {
+      font-weight: bold;
+    }
+
+    .cell-type-list {
+      list-style-type: none;
+      padding-left: 20px;
+      font-size: small;
+    }
+  }
+
+  .page-instructions {
+    padding: 20px;
+  }
+
+  .btn.instruction {
+    color: #0069D9;
+  }
 }
 
 .nav-container {
@@ -227,7 +307,8 @@ svg {
   border-color: rgba(121, 121, 121, 1);
   border-radius: 0px;
   margin-left: 0px !important;
-  padding-left: 0px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
   height: $header-height;
   position: fixed;
   top: 0px;
@@ -235,17 +316,16 @@ svg {
   background: white;
 
   .logo {
-    margin-top: 5px;
-    margin-left: 5px;
     height: 50px;
   }
 
   .navbar-brand {
     padding-top: 0px !important;
     padding-bottom: 0px !important;
+    margin-right: 38px;
   }
 
   #feedback-button {
-    margin-top: 10px;
+    margin-left: 20px;
   }
 }

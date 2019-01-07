@@ -5,7 +5,7 @@ import { createChart, renderChart } from './vennUtils';
 
 const VENN_PARAMETERS = {
     width: 330
-    , height: 400
+    , height: 330
 };
 
 class SiteVennDiagram extends Component {
