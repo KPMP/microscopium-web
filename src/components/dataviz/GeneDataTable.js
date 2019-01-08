@@ -41,10 +41,6 @@ class GeneDataTable extends Component {
 
     componentDidUpdate() {
         if(!isEqual(this.state.vennFiltered, this.props.vennFilter)) {
-            console.log('+++ componentDidUpdate() venn filter setting',
-                this.state.filtered,
-                this.props.vennFilter);
-
             this.setState({
                 vennFiltered: this.props.vennFilter,
                 filtered: this.props.vennFilter
@@ -53,6 +49,7 @@ class GeneDataTable extends Component {
     }
 
     resetFilterAndSort() {
+        console.log('resetFilterAndSort');
         this.setState({
             sorted: this.props.defaultSortOrder,
             filtered: []
@@ -215,15 +212,15 @@ class GeneDataTable extends Component {
                             offset="50%p">
                             <div>
                                 <p>Shows the expressed gene measurements considered significant by one or more TIS.
-                                Changes to the Venn do not affect this Table and vice versa. Click on a FC or
-                                    P Value column title to sort the entire table by that column.</p>
+                                    Measurements in the table are grouped by TIS.  Under a given TIS, click on <b>FC</b> or <b>P&nbsp;Value</b> to
+                                    sort the entire table by that column.  Click <b>Reset</b> to return to default sort on the entire gene list.</p>
                                 <p>Under each column name is a filter input.
                                 Filters accept values given in the list below.
-                                After you have sorted and filtered the table to your liking, click “Download CSV”
-                                    to download the data table in its current sort and filter state.</p>
+                                    After you have sorted and filtered the table to your liking, click <b>Download CSV</b> to download the data
+                                    table in its current sort and filter state.</p>
                                 <ul>
-                                    <li>+ to exclude genes not measured by this TIS.</li>
-                                    <li>- to exclude genes measured by this TIS.</li>
+                                    <li>+ to exclude genes not measured by this TIS</li>
+                                    <li>- to exclude genes measured by this TIS</li>
                                     <li>&gt; or &lt; and a number to filter by values above or below the filter criteria. Example: &lt;0.0e-12</li>
                                 </ul>
                             </div>
@@ -232,7 +229,10 @@ class GeneDataTable extends Component {
                         <h6>Showing { this.state.rowCount } Genes</h6>
                     </Col>
                     <Col className="col-auto">
-                        <Button color="secondary" outline
+                        <Button color="secondary"
+                                outline
+                                onClick={this.resetFilterAndSort}
+                                className="reset-table-button"
                             >Reset
                         </Button>
                         <CSVLink

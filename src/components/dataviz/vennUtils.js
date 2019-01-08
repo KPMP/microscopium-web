@@ -31,6 +31,10 @@ function onMouseOver() {
     node.select('path')
         .style('stroke', '#000000')
         .style('stroke-opacity', '1')
+        .style('fill', '#6C757D');
+
+    node.select('tspan')
+        .style('color', '#FFFFFF')
         .style('fill', '#FFFFFF');
 }
 
@@ -39,6 +43,10 @@ function onMouseOut() {
     node.select('path')
         .style('stroke', '#AAAAAA')
         .style('stroke-opacity', '0.5')
+        .style('fill', 'inherit');
+
+    node.select('tspan')
+        .style('color', 'inherit')
         .style('fill', 'inherit');
 }
 

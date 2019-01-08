@@ -58,8 +58,7 @@ class Instruction extends Component {
                     isOpen={this.state.isOpen}
                     placement={this.props.placement}
                     className={this.props.id + '-popover'}
-                    offset={this.props.offset}
-                    >
+                    offset={this.props.offset}>
                     <PopoverHeader>{this.props.title}</PopoverHeader>
                     <PopoverBody>{this.props.children}</PopoverBody>
                 </Popover>

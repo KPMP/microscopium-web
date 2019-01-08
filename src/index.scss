@@ -122,24 +122,37 @@ code {
   max-width: 300px;
   margin-top: 20px;
 
-  .umich_sc.active {
+  .btn.btn-outline-secondary.umich_sc.active {
     background: #D4E3F5 !important;
   }
 
-  .ucsf_sc.active {
+  .btn.btn-outline-secondary.ucsf_sc.active {
     background: #EBC1C6 !important;
   }
 
-  .ucsd_sn.active {
+  .btn.btn-outline-secondary.ucsd_sn.active {
     background: #EFF8E2 !important;
   }
 
-  .site-selector-label {
+  .btn.btn-outline-secondary.site-selector-label {
     width: 100%;
     border-radius: 3px;
     padding: 5px 10px;
     margin: 3px;
     color: #424B5A !important;
+    border-color: #AAAAAA;
+  }
+
+  .btn.btn-outline-secondary.site-selector-label:hover {
+    color: #FFFFFF !important;
+    background-color: #6C757D !important;
+  }
+
+  .btn.btn-outline-secondary.active.site-selector-label:hover {
+    color: #FFFFFF !important;
+    background-color: #6C757D !important;
+    background-image: none !important;
+    border-color: #007bff !important;
   }
 }
 
@@ -275,6 +288,10 @@ svg {
       .rt-td {
         font-size: small;
       }
+    }
+
+    .reset-table-button {
+      margin-right: 10px;
     }
   }
 

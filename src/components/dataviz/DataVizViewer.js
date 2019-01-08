@@ -117,7 +117,7 @@ class DataVizViewer extends Component {
                                 placement="bottom">
                                 <ul>
                                     <li>This shows the total number of expressed genes measured by each TIS.</li>
-                                    <li>Changes to the Data Table do not affect this Venn diagram and vise versa.</li>
+                                    <li>Click on a set in the diagram to filters the Data Table down to those genes.</li>
                                     <li>To show or hide a TIS’s values, click its name in the legend below.  At least 1 site must be selected.</li>
                                 </ul>
                             </Instruction>
