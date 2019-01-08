@@ -50,7 +50,6 @@ class GeneDataTable extends Component {
     }
 
     resetFilterAndSort() {
-        console.log('resetFilterAndSort');
         this.setState({
             sorted: this.props.defaultSortOrder,
             filtered: []
@@ -131,9 +130,7 @@ class GeneDataTable extends Component {
     }
 
     getFloat(floatValue) {
-        let output = floatValue.toFixed(this.props.fcPrecision);
-        console.log('getFloat yield', output);
-        return output;
+        return floatValue.toFixed(this.props.fcPrecision);
     }
 
     getColumns() {
