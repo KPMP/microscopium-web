@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { CSVLink } from '../download-csv/index';
+import { CSVLink } from 'react-csv';
 import ReactTable from 'react-table';
 import { Button, Row, Col } from 'reactstrap';
 import PropTypes from 'prop-types';
