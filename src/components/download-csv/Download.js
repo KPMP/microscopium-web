@@ -6,6 +6,7 @@ import {
 const defaultProps = {
   target: '_blank'
 };
+import assign from 'lodash/assign';
 
 /**
  *
@@ -13,7 +14,7 @@ const defaultProps = {
  */
 class CSVDownload extends React.Component {
 
-  static defaultProps = Object.assign(
+  static defaultProps = assign(
     commonDefaultProps,
     defaultProps
   );
