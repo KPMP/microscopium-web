@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
-import { Card, CardBody, CardTitle, CardText, Container, Col, Row, ButtonGroup, Button, Input } from 'reactstrap';
+import { Container, Col, Row, ButtonGroup, Button } from 'reactstrap';
 import GeneDataTable from "./GeneDataTable";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import SiteVennDiagram from './SiteVennDiagram';
 import Instruction from './Instruction';
+import each from 'lodash/each';
 
 import atlas from '../../data/atlas';
 
@@ -12,26 +11,66 @@ class DataVizViewer extends Component {
 
     constructor(props) {
         super(props);
+        this.getDataTableDefaultSortOrder = this.getDataTableDefaultSortOrder.bind(this);
+        this.onVennClick = this.onVennClick.bind(this);
         this.onSiteClick = this.onSiteClick.bind(this);
-        this.getTableRows = this.getTableRows.bind(this);
-        this.getVennSets = this.getVennSets.bind(this);
-    }
 
-    getTableRows() {
-        return Object.values(atlas.result.cells[this.props.selectedCell].rows);
-    }
-
-    getVennSets() {
-        return atlas.result.cells[this.props.selectedCell].sets;
+        this.state = {
+            vennFilter: [],
+            tableRows: Object.values(atlas.result.cells[this.props.selectedCell].rows),
+            vennSets: atlas.result.cells[this.props.selectedCell].sets,
+            defaultSortOrder: this.getDataTableDefaultSortOrder()
+        };
     }
 
     componentDidMount() {
-        let urlCell = decodeURIComponent(this.props.match.params.cellName);
+        let cellFromUrl = decodeURIComponent(this.props.match.params.cellName);
 
         //If we detect the URL has a different selected cell state than redux, set redux to match URL
-        if(this.props.selectedCell !== urlCell) {
-            this.props.setSelectedCell(urlCell);
+        if(this.props.selectedCell !== cellFromUrl) {
+            this.props.setSelectedCell(cellFromUrl);
         }
+    }
+
+    getDataTableDefaultSortOrder() {
+        let vennSets = atlas.result.cells[this.props.selectedCell].sets;
+        let sites = { };
+        let sitesArray = [ ];
+
+        each(vennSets, function(vennSet) {
+            each(vennSet.sets, function(site) {
+                sites.hasOwnProperty(site) ?
+                    sites[site] += parseInt(vennSet.size) :
+                    sites[site] = parseInt(vennSet.size);
+            });
+        });
+
+        for(let siteName in sites) {
+            sitesArray.push({
+                id: 'f_' + siteName + '_p_val_adj',
+                size: sites[siteName],
+                desc: true
+            });
+        }
+
+        sitesArray.sort(function(a, b) {
+            return a.size - b.size;
+        });
+
+        return sitesArray;
+    }
+
+    onVennClick(vennSet) {
+        let siteNames = vennSet.sets.join(' ');
+
+        this.setState({
+            vennFilter: this.props.allSites.map(function (siteName) {
+                return {
+                    id: 'f_' + siteName + '_avgLogFc',
+                    value: siteNames.indexOf(siteName) === -1 ? '-' : '+'
+                };
+            })
+        });
     }
 
     onSiteClick(siteName) {
@@ -87,10 +126,11 @@ class DataVizViewer extends Component {
                         </Row>
                         <Row>
                         <SiteVennDiagram
-                            sets={this.getVennSets()}
+                            sets={this.state.vennSets}
                             sites={this.props.selectedSites}
                             allSites={this.props.allSites}
                             fixedSizeVenn={this.props.fixedSizeVenn}
+                            onVennClick={this.onVennClick}
                         />
                         </Row>
                         <Row className="site-selector-group no-gutters">
@@ -111,9 +151,11 @@ class DataVizViewer extends Component {
                     </Col>
                     <GeneDataTable
                         selectedCellName={this.props.selectedCell}
-                        rows={this.getTableRows()}
+                        rows={this.state.tableRows}
                         allSites={this.props.allSites}
                         allSitesPrettyNames={this.props.allSitePrettyNames}
+                        defaultSortOrder={this.state.defaultSortOrder}
+                        vennFilter={this.state.vennFilter}
                     />
                 </Row>
             </Container>

@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import "react-table/react-table.css";
 import { getFromReactTable } from '../../data/downloadUtil';
 import Instruction from './Instruction';
+import isEqual from 'lodash/isEqual';
 
 const NO_ENTRY = "-";
 const P_VALUE = "P Value";
@@ -17,17 +18,20 @@ class GeneDataTable extends Component {
         super(props);
 
         this.getColumns = this.getColumns.bind(this);
-        this.getRowCount = this.getRowCount.bind(this);
-        this.getDownloadData = this.getDownloadData.bind(this);
         this.onSortedChange = this.onSortedChange.bind(this);
         this.onFilteredChange = this.onFilteredChange.bind(this);
         this.resetFilterAndSort = this.resetFilterAndSort.bind(this);
+        this.reactTableExists = this.reactTableExists.bind(this);
+        this.updateSecondaryState = this.updateSecondaryState.bind(this);
         this.reactTable = React.createRef();
 
         this.state = {
             sorted: [],
             filtered: [],
-            downloadData: []
+            vennFiltered: [],
+            downloadData: [],
+            columns: this.getColumns(),
+            rowCount: 0
         };
     }
 
@@ -35,58 +39,47 @@ class GeneDataTable extends Component {
         this.resetFilterAndSort();
     }
 
+    componentDidUpdate() {
+        if(!isEqual(this.state.vennFiltered, this.props.vennFilter)) {
+            console.log('+++ componentDidUpdate() venn filter setting',
+                this.state.filtered,
+                this.props.vennFilter);
+
+            this.setState({
+                vennFiltered: this.props.vennFilter,
+                filtered: this.props.vennFilter
+            }, this.updateSecondaryState);
+        }
+    }
+
     resetFilterAndSort() {
         this.setState({
-            sorted: [
-                {
-                    id: "f_umich_sc_p_val_adj",
-                    desc: false
-                },
-                {
-                    id: "f_ucsf_sc_p_val_adj",
-                    desc: false
-                },
-                {
-                    id: "f_ucsd_sn_p_val_adj",
-                    desc: false
-                }
-            ],
+            sorted: this.props.defaultSortOrder,
             filtered: []
-        });
-
-        this.setState({
-           downloadData: this.getDownloadData()
-        });
+        }, this.updateSecondaryState);
     }
 
     onSortedChange(sorted) {
         this.setState({
-            sorted: sorted,
-            downloadData: this.getDownloadData()
-        });
+            sorted: sorted
+        }, this.updateSecondaryState);
     }
 
     onFilteredChange(filtered) {
         this.setState({
-            filtered: filtered,
-            downloadData: this.getDownloadData()
+            filtered: filtered
+        }, this.updateSecondaryState);
+    }
+
+    updateSecondaryState() {
+        this.setState({
+            rowCount: !this.reactTableExists() ? 0 : this.reactTable.current.getResolvedState().sortedData.length,
+            downloadData: !this.reactTableExists() ? [] : getFromReactTable(this.reactTable)
         });
     }
 
-    getDownloadData() {
-        if(this.reactTable !== null && this.reactTable.current !== null) {
-            return getFromReactTable(this.reactTable);
-        }
-
-        return [];
-    }
-
-    getRowCount() {
-        if(this.reactTable !== null && this.reactTable.current !== null) {
-            return this.reactTable.current.getResolvedState().sortedData.length;
-        }
-
-        return 'NA';
+    reactTableExists() {
+        return this.reactTable !== null && this.reactTable.current !== null;
     }
 
     static sortWithNoEntry(a, b) {
@@ -236,9 +229,12 @@ class GeneDataTable extends Component {
                             </div>
                         </Instruction>
                         &nbsp;
-                        <h6>Showing { this.getRowCount() } Genes</h6>
+                        <h6>Showing { this.state.rowCount } Genes</h6>
                     </Col>
                     <Col className="col-auto">
+                        <Button color="secondary" outline
+                            >Reset
+                        </Button>
                         <CSVLink
                             className="btn btn-primary"
                             data={this.state.downloadData}
@@ -256,11 +252,12 @@ class GeneDataTable extends Component {
                         filtered={this.state.filtered}
                         onSortedChange={this.onSortedChange}
                         onFilteredChange={this.onFilteredChange}
-                        columns={this.getColumns()}
+                        columns={this.state.columns}
                         defaultPageSize={10}
                         filterable
                         className="-striped -highlight"
                         showPageSizeOptions={false}
+                        noDataText={"No genes found"}
                     />
                 </Row>
                 <Row className="bottom-spacer" />
@@ -274,7 +271,8 @@ GeneDataTable.propTypes = {
     rows: PropTypes.string,
     allSites: PropTypes.arrayOf(PropTypes.string),
     allSitesPrettyNames: PropTypes.arrayOf(PropTypes.string),
-    defaultSortOrder: PropTypes.arrayOf(PropTypes.string).isRequired
+    defaultSortOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
+    vennFilter: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default GeneDataTable;
