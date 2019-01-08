@@ -12,7 +12,7 @@ import rootReducer from './reducers';
 import DemoNavBar from "./components/nav/DemoNavBar";
 
 /* INITIALIZE REDUX **************************************************************/
-const cacheStore = window.sessionStorage.getItem('redux-store');
+const cacheStore = window.sessionStorage.getItem('atlas');
 const loadedState = cacheStore ?
     JSON.parse(cacheStore) :
     initialState;
@@ -23,7 +23,7 @@ const store = applyMiddleware(thunk)(createStore)(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 const saveState = () => {
-    window.sessionStorage.setItem('redux-store', JSON.stringify(store.getState()));
+    window.sessionStorage.setItem('atlas', JSON.stringify(store.getState()));
 };
 
 store.subscribe(saveState);
