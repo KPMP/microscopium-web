@@ -211,11 +211,10 @@ class GeneDataTable extends Component {
                             placement="bottom"
                             offset="50%p">
                             <div>
-                                <p>Shows the expressed gene measurements considered significant by one or more TIS.
-                                    Measurements in the table are grouped by TIS.  Under a given TIS, click on <b>FC</b> or <b>P&nbsp;Value</b> to
+                                <p>Shows the expressed gene measurements considered significant by one or more transcriptomics technology.
+                                    Measurements in the table are grouped by TIS technology.  Under a given TIS, click on <b>FC</b> or <b>P&nbsp;Value</b> to
                                     sort the entire table by that column.  Click <b>Reset</b> to return to default sort on the entire gene list.</p>
-                                <p>Under each column name is a filter input.
-                                Filters accept values given in the list below.
+                                <p>Under each column name is a filter input. Filters accept values given in the list below.
                                     After you have sorted and filtered the table to your liking, click <b>Download CSV</b> to download the data
                                     table in its current sort and filter state.</p>
                                 <ul>
