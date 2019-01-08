@@ -1,3 +1,4 @@
+import 'babel-polyfill';
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
 import { HashRouter, Switch, Route } from 'react-router-dom';
