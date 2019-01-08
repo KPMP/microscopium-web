@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import "react-table/react-table.css";
 import { getFromReactTable } from '../../data/downloadUtil';
 import Instruction from './Instruction';
+import isEqual from 'lodash/isEqual';
 
 const NO_ENTRY = "-";
 const P_VALUE = "P Value";
@@ -17,42 +18,65 @@ class GeneDataTable extends Component {
         super(props);
 
         this.getColumns = this.getColumns.bind(this);
-        this.getRowCount = this.getRowCount.bind(this);
-        this.onTableChange = this.onTableChange.bind(this);
-        this.getDownloadData = this.getDownloadData.bind(this);
+        this.onSortedChange = this.onSortedChange.bind(this);
+        this.onFilteredChange = this.onFilteredChange.bind(this);
+        this.resetFilterAndSort = this.resetFilterAndSort.bind(this);
+        this.reactTableExists = this.reactTableExists.bind(this);
+        this.updateSecondaryState = this.updateSecondaryState.bind(this);
         this.reactTable = React.createRef();
 
         this.state = {
-            downloadData: []
+            sorted: [],
+            filtered: [],
+            vennFiltered: [],
+            downloadData: [],
+            columns: this.getColumns(),
+            rowCount: 0
         };
     }
 
     componentDidMount() {
-        this.onTableChange();
+        this.resetFilterAndSort();
     }
 
-    onTableChange() {
-        if (this.reactTable.current) {
+    componentDidUpdate() {
+        if(!isEqual(this.state.vennFiltered, this.props.vennFilter)) {
             this.setState({
-                downloadData: this.getDownloadData()
-            });
+                vennFiltered: this.props.vennFilter,
+                filtered: this.props.vennFilter
+            }, this.updateSecondaryState);
         }
     }
 
-    getDownloadData() {
-        if(this.reactTable !== null && this.reactTable.current !== null) {
-            return getFromReactTable(this.reactTable);
-        }
-
-        return [];
+    resetFilterAndSort() {
+        console.log('resetFilterAndSort');
+        this.setState({
+            sorted: this.props.defaultSortOrder,
+            filtered: []
+        }, this.updateSecondaryState);
     }
 
-    getRowCount() {
-        if(this.reactTable !== null && this.reactTable.current !== null) {
-            return this.reactTable.current.getResolvedState().sortedData.length;
-        }
+    onSortedChange(sorted) {
+        this.setState({
+            sorted: sorted
+        }, this.updateSecondaryState);
+    }
 
-        return 'NA';
+    onFilteredChange(filtered) {
+        this.setState({
+            filtered: filtered
+        }, this.updateSecondaryState);
+    }
+
+    updateSecondaryState() {
+        this.setState({
+            rowCount: !this.reactTableExists() ? 0 : this.reactTable.current.getResolvedState().sortedData.length,
+            downloadData: !this.reactTableExists() ? [] : getFromReactTable(this.reactTable)
+        });
+    }
+
+    reactTableExists() {
+        return this.reactTable !== null && this.reactTable.current !== null;
     }
 
     static sortWithNoEntry(a, b) {
@@ -188,23 +212,29 @@ class GeneDataTable extends Component {
                             offset="50%p">
                             <div>
                                 <p>Shows the expressed gene measurements considered significant by one or more TIS.
-                                Changes to the Venn do not affect this Table and vice versa. Click on a FC or
-                                    P Value column title to sort the entire table by that column.</p>
+                                    Measurements in the table are grouped by TIS.  Under a given TIS, click on <b>FC</b> or <b>P&nbsp;Value</b> to
+                                    sort the entire table by that column.  Click <b>Reset</b> to return to default sort on the entire gene list.</p>
                                 <p>Under each column name is a filter input.
                                 Filters accept values given in the list below.
-                                After you have sorted and filtered the table to your liking, click “Download CSV”
-                                    to download the data table in its current sort and filter state.</p>
+                                    After you have sorted and filtered the table to your liking, click <b>Download CSV</b> to download the data
+                                    table in its current sort and filter state.</p>
                                 <ul>
-                                    <li>+ to exclude genes not measured by this TIS.</li>
-                                    <li>- to exclude genes measured by this TIS.</li>
+                                    <li>+ to exclude genes not measured by this TIS</li>
+                                    <li>- to exclude genes measured by this TIS</li>
                                     <li>&gt; or &lt; and a number to filter by values above or below the filter criteria. Example: &lt;0.0e-12</li>
                                 </ul>
                             </div>
                         </Instruction>
                         &nbsp;
-                        <h6>Showing { this.getRowCount() } Genes</h6>
+                        <h6>Showing { this.state.rowCount } Genes</h6>
                     </Col>
                     <Col className="col-auto">
+                        <Button color="secondary"
+                                outline
+                                onClick={this.resetFilterAndSort}
+                                className="reset-table-button"
+                            >Reset
+                        </Button>
                         <CSVLink
                             className="btn btn-primary"
                             data={this.state.downloadData}
@@ -218,13 +248,16 @@ class GeneDataTable extends Component {
                     <ReactTable
                         data={this.props.rows}
                         ref={this.reactTable}
-                        onSortedChange={this.onTableChange}
-                        onFilteredChange={this.onTableChange}
-                        columns={this.getColumns()}
+                        sorted={this.state.sorted}
+                        filtered={this.state.filtered}
+                        onSortedChange={this.onSortedChange}
+                        onFilteredChange={this.onFilteredChange}
+                        columns={this.state.columns}
                         defaultPageSize={10}
                         filterable
                         className="-striped -highlight"
                         showPageSizeOptions={false}
+                        noDataText={"No genes found"}
                     />
                 </Row>
                 <Row className="bottom-spacer" />
@@ -237,7 +270,9 @@ GeneDataTable.propTypes = {
     selectedCellName: PropTypes.string,
     rows: PropTypes.string,
     allSites: PropTypes.arrayOf(PropTypes.string),
-    allSitesPrettyNames: PropTypes.arrayOf(PropTypes.string)
+    allSitesPrettyNames: PropTypes.arrayOf(PropTypes.string),
+    defaultSortOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
+    vennFilter: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default GeneDataTable;

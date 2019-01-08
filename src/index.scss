@@ -122,71 +122,83 @@ code {
   max-width: 300px;
   margin-top: 20px;
 
-  .umich_sc.active {
+  .btn.btn-outline-secondary.umich_sc.active {
     background: #D4E3F5 !important;
   }
 
-  .ucsf_sc.active {
+  .btn.btn-outline-secondary.ucsf_sc.active {
     background: #EBC1C6 !important;
   }
 
-  .ucsd_sn.active {
+  .btn.btn-outline-secondary.ucsd_sn.active {
     background: #EFF8E2 !important;
   }
 
-  .site-selector-label {
+  .btn.btn-outline-secondary.site-selector-label {
     width: 100%;
     border-radius: 3px;
     padding: 5px 10px;
     margin: 3px;
     color: #424B5A !important;
+    border-color: #AAAAAA;
+  }
+
+  .btn.btn-outline-secondary.site-selector-label:hover {
+    color: #FFFFFF !important;
+    background-color: #6C757D !important;
+  }
+
+  .btn.btn-outline-secondary.active.site-selector-label:hover {
+    color: #FFFFFF !important;
+    background-color: #6C757D !important;
+    background-image: none !important;
+    border-color: #007bff !important;
   }
 }
 
 /** VENN DIAGRAM STYLES ********************************************/
 svg {
+
+  g.venn-area {
+    stroke: #AAAAAA;
+    stroke-opacity: 0.5;
+    stroke-width:1px;
+    cursor: pointer !important;
+  }
+
   g.venn-area[data-venn-sets="umich_sc"] {
     fill: #D4E3F5;
-    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsf_sc"] {
     fill: #EBC1C6;
-    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsd_sn"] {
     fill: #EFF8E2;
-    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsf_sc_umich_sc"] {
     fill: #CAACBF;
-    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsd_sn_ucsf_sc"] {
     fill: #DEBBB0;
-    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsd_sn_umich_sc"] {
     fill: #CFE3DA;
-    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area[data-venn-sets="ucsd_sn_ucsf_sc_umich_sc"],
   g.venn-area[data-venn-sets="ucsd_sn_umich_sc_ucsf_sc"] {
     fill: #C6ABAB;
-    border: 1px rgba(240, 240, 240, 0.5);
   }
 
   g.venn-area text, g.venn-area text tspan,
   g.venn-intersection text, g.venn-intersection text tspan {
     color: black;
     fill: black;
-    font-weight: bold;
-    stroke: rgba(255, 255, 255, 0.5);
   }
 }
 
@@ -272,6 +284,14 @@ svg {
     .ReactTable {
       width: 100%;
       margin: auto 16px;
+
+      .rt-td {
+        font-size: small;
+      }
+    }
+
+    .reset-table-button {
+      margin-right: 10px;
     }
   }
 
@@ -303,6 +323,14 @@ svg {
 
   a.btn.instruction:hover {
     color: #FFFFFF;
+  }
+}
+
+.popover {
+  .popover-body {
+    ul {
+      padding-left: 10px;
+    }
   }
 }
 

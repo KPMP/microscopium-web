@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import difference from 'lodash/difference';
-import { createChart, renderChart } from './vennUtils';
+import { createChart, renderChart, applyChartMouseListeners } from './vennUtils';
 
 const VENN_PARAMETERS = {
     width: 330
@@ -61,10 +61,12 @@ class SiteVennDiagram extends Component {
 
     componentDidMount() {
         this.handleChartUpdate();
+        applyChartMouseListeners(this.props.onVennClick);
     }
 
     componentDidUpdate() {
         this.handleChartUpdate();
+        applyChartMouseListeners(this.props.onVennClick);
     }
 
     render() {
@@ -80,7 +82,8 @@ SiteVennDiagram.propTypes = {
     sets: PropTypes.arrayOf(PropTypes.array),
     sites: PropTypes.arrayOf(PropTypes.string),
     allSites: PropTypes.arrayOf(PropTypes.string),
-    fixedSizeVenn: PropTypes.number
+    fixedSizeVenn: PropTypes.number,
+    onVennClick: PropTypes.func.isRequired
 };
 
 export default SiteVennDiagram;

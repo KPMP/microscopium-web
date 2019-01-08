@@ -15,12 +15,39 @@ function renderChart(chart, sets, selector) {
         .call(chart);
 }
 
-function applyToolTips() {
-
+function applyChartMouseListeners(clickHandler) {
+    d3.selectAll(
+        '#venn .venn-area')
+        .on('mouseover', null)
+        .on('mouseout', null)
+        .on('click', null)
+        .on('mouseover', onMouseOver)
+        .on('mouseout', onMouseOut)
+        .on('click', function(d) { clickHandler(d); });
 }
 
-function applyMouseListeners() {
+function onMouseOver() {
+    let node = d3.select(this).transition();
+    node.select('path')
+        .style('stroke', '#000000')
+        .style('stroke-opacity', '1')
+        .style('fill', '#6C757D');
 
+    node.select('tspan')
+        .style('color', '#FFFFFF')
+        .style('fill', '#FFFFFF');
 }
 
-export { createChart, renderChart };
+function onMouseOut() {
+    let node = d3.select(this).transition();
+    node.select('path')
+        .style('stroke', '#AAAAAA')
+        .style('stroke-opacity', '0.5')
+        .style('fill', 'inherit');
+
+    node.select('tspan')
+        .style('color', 'inherit')
+        .style('fill', 'inherit');
+}
+
+export { createChart, renderChart, applyChartMouseListeners };

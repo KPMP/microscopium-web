@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle,
-    Nav, Navbar, NavbarBrand, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
+import { Button, Nav, Navbar, NavbarBrand, NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
 class DemoNavBar extends Component {
