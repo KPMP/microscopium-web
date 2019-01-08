@@ -105,8 +105,10 @@ class DataVizViewer extends Component {
                     </Col>
                 </Row>
                 <Row className="page-instructions">
-                    <p><em>Left</em>: The Venn diagram shows how many genes were found to be expressed by this cell type ({this.props.selectedCell}) at each Tissue Interrogation Site (TIS).</p>
-                    <br/><p><em>Right</em>: The data table shows every expressed gene as measured by each TIS.  When a gene was not measured or found significant by a TIS, its values will show as "-" in the table.</p>
+                    <p><em>Left</em>: The Venn diagram shows how many genes were significantly expressed by this cell
+                        type ({this.props.selectedCell}) at each transcriptomics technology.</p>
+                    <br/><p><em>Right</em>: The data table shows every significantly expressed gene as measured by each transcriptomics technology.
+                    When a gene was not measured or found significant by a technology, its values will show as "-" in the table.</p>
                 </Row>
                 <Row className="page-charts">
                     <Col sm={4} id="venn-diagram">
@@ -116,9 +118,9 @@ class DataVizViewer extends Component {
                                 title="Reading the Venn Diagram"
                                 placement="bottom">
                                 <ul>
-                                    <li>This shows the total number of expressed genes measured by each TIS.</li>
+                                    <li>This shows the total number of expressed genes measured by each transcriptomics technology.</li>
                                     <li>Click on a set in the diagram to filters the Data Table down to those genes.</li>
-                                    <li>To show or hide a TIS’s values, click its name in the legend below.  At least 1 site must be selected.</li>
+                                    <li>To hide a technology in the diagram, click its name in the legend below.  Click again to bring it back.</li>
                                 </ul>
                             </Instruction>
                             &nbsp;

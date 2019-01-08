@@ -17,6 +17,7 @@ class GeneDataTable extends Component {
     constructor(props) {
         super(props);
 
+        this.getFloat = this.getFloat.bind(this);
         this.getColumns = this.getColumns.bind(this);
         this.onSortedChange = this.onSortedChange.bind(this);
         this.onFilteredChange = this.onFilteredChange.bind(this);
@@ -129,6 +130,12 @@ class GeneDataTable extends Component {
 
     }
 
+    getFloat(floatValue) {
+        let output = floatValue.toFixed(this.props.fcPrecision);
+        console.log('getFloat yield', output);
+        return output;
+    }
+
     getColumns() {
         return [{
             Header: "Gene"
@@ -142,7 +149,8 @@ class GeneDataTable extends Component {
                     Header: FC
                     , id: "f_umich_sc_avgLogFc"
                     , accessor: (row) => {
-                        return row.hasOwnProperty("f_umich_sc_avgLogFc") ? row.f_umich_sc_avgLogFc : NO_ENTRY;
+                        return row.hasOwnProperty("f_umich_sc_avgLogFc") ?
+                            this.getFloat(row.f_umich_sc_avgLogFc) : NO_ENTRY;
                     }, sortMethod: GeneDataTable.sortWithNoEntry
                     , filterMethod: GeneDataTable.filterWithNoEntry
                 },
@@ -150,7 +158,8 @@ class GeneDataTable extends Component {
                     Header: P_VALUE
                     , id: "f_umich_sc_p_val_adj"
                     , accessor: (row) => {
-                        return row.hasOwnProperty("f_umich_sc_p_val_adj") ? row.f_umich_sc_p_val_adj : NO_ENTRY;
+                        return row.hasOwnProperty("f_umich_sc_p_val_adj") ?
+                            row.f_umich_sc_p_val_adj : NO_ENTRY;
                     }, sortMethod: GeneDataTable.sortWithNoEntry
                     , filterMethod: GeneDataTable.filterWithNoEntry
                 }
@@ -163,7 +172,8 @@ class GeneDataTable extends Component {
                     Header: FC
                     , id: "f_ucsf_sc_avgLogFc"
                     , accessor: (row) => {
-                        return row.hasOwnProperty("f_ucsf_sc_avgLogFc") ? row.f_ucsf_sc_avgLogFc : NO_ENTRY;
+                        return row.hasOwnProperty("f_ucsf_sc_avgLogFc") ?
+                            this.getFloat(row.f_ucsf_sc_avgLogFc) : NO_ENTRY;
                     }, sortMethod: GeneDataTable.sortWithNoEntry
                     , filterMethod: GeneDataTable.filterWithNoEntry
                 },
@@ -171,7 +181,8 @@ class GeneDataTable extends Component {
                     Header: P_VALUE
                     , id: "f_ucsf_sc_p_val_adj"
                     , accessor: (row) => {
-                        return row.hasOwnProperty("f_ucsf_sc_p_val_adj") ? row.f_ucsf_sc_p_val_adj : NO_ENTRY;
+                        return row.hasOwnProperty("f_ucsf_sc_p_val_adj") ?
+                            row.f_ucsf_sc_p_val_adj : NO_ENTRY;
                     }, sortMethod: GeneDataTable.sortWithNoEntry
                     , filterMethod: GeneDataTable.filterWithNoEntry
                 }
@@ -184,7 +195,8 @@ class GeneDataTable extends Component {
                     Header: FC
                     , id: "f_ucsd_sn_avgLogFc"
                     , accessor: (row) => {
-                        return row.hasOwnProperty("f_ucsd_sn_avgLogFc") ? row.f_ucsd_sn_avgLogFc : NO_ENTRY;
+                        return row.hasOwnProperty("f_ucsd_sn_avgLogFc") ?
+                            this.getFloat(row.f_ucsd_sn_avgLogFc) : NO_ENTRY;
                     }, sortMethod: GeneDataTable.sortWithNoEntry
                     , filterMethod: GeneDataTable.filterWithNoEntry
                 },
@@ -192,7 +204,8 @@ class GeneDataTable extends Component {
                     Header: P_VALUE
                     , id: "f_ucsd_sn_p_val_adj"
                     , accessor: (row) => {
-                        return row.hasOwnProperty("f_ucsd_sn_p_val_adj") ? row.f_ucsd_sn_p_val_adj : NO_ENTRY;
+                        return row.hasOwnProperty("f_ucsd_sn_p_val_adj") ?
+                            row.f_ucsd_sn_p_val_adj : NO_ENTRY;
                     }, sortMethod: GeneDataTable.sortWithNoEntry
                     , filterMethod: GeneDataTable.filterWithNoEntry
                 }
@@ -211,11 +224,10 @@ class GeneDataTable extends Component {
                             placement="bottom"
                             offset="50%p">
                             <div>
-                                <p>Shows the expressed gene measurements considered significant by one or more TIS.
-                                    Measurements in the table are grouped by TIS.  Under a given TIS, click on <b>FC</b> or <b>P&nbsp;Value</b> to
+                                <p>Shows the expressed gene measurements considered significant by one or more transcriptomics technology.
+                                    Measurements in the table are grouped by TIS technology.  Under a given TIS, click on <b>FC</b> or <b>P&nbsp;Value</b> to
                                     sort the entire table by that column.  Click <b>Reset</b> to return to default sort on the entire gene list.</p>
-                                <p>Under each column name is a filter input.
-                                Filters accept values given in the list below.
+                                <p>Under each column name is a filter input. Filters accept values given in the list below.
                                     After you have sorted and filtered the table to your liking, click <b>Download CSV</b> to download the data
                                     table in its current sort and filter state.</p>
                                 <ul>
@@ -272,7 +284,12 @@ GeneDataTable.propTypes = {
     allSites: PropTypes.arrayOf(PropTypes.string),
     allSitesPrettyNames: PropTypes.arrayOf(PropTypes.string),
     defaultSortOrder: PropTypes.arrayOf(PropTypes.string).isRequired,
-    vennFilter: PropTypes.arrayOf(PropTypes.object)
+    vennFilter: PropTypes.arrayOf(PropTypes.object),
+    fcPrecision: PropTypes.number
 };
+
+GeneDataTable.defaultProps = {
+    fcPrecision: 3
+}
 
 export default GeneDataTable;
