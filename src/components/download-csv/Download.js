@@ -1,12 +1,12 @@
 import React from 'react';
 import {buildURI} from './core';
+import assign from 'lodash/assign';
 import {
    defaultProps as commonDefaultProps,
    propTypes as commonPropTypes} from './metaProps';
 const defaultProps = {
   target: '_blank'
 };
-import assign from 'lodash/assign';
 
 /**
  *
