@@ -105,10 +105,11 @@ class DataVizViewer extends Component {
                     </Col>
                 </Row>
                 <Row className="page-instructions">
-                    <p><em>Left</em>: The Venn diagram shows how many genes were significantly expressed by this cell
-                        type ({this.props.selectedCell}) at each transcriptomics technology.</p>
-                    <br/><p><em>Right</em>: The data table shows every significantly expressed gene as measured by each transcriptomics technology.
-                    When a gene was not measured or found significant by a technology, its values will show as "-" in the table.</p>
+                    <p><em>Left</em>: The Venn diagram shows how many genes were significantly expressed for this cell type
+                        ({this.props.selectedCell}) by each transcriptomics technology.</p>
+                    <br/><p><em>Right</em>: The data table shows every significantly expressed gene for this cell type
+                    as measured by each transcriptomics technology. When a gene was not measured or found significant
+                    by a technology, its values will show as "-" in the table.</p>
                 </Row>
                 <Row className="page-charts">
                     <Col sm={4} id="venn-diagram">
