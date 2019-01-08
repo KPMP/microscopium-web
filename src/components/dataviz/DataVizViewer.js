@@ -4,6 +4,7 @@ import GeneDataTable from "./GeneDataTable";
 import SiteVennDiagram from './SiteVennDiagram';
 import Instruction from './Instruction';
 import each from 'lodash/each';
+import values from 'lodash/values';
 
 import atlas from '../../data/atlas';
 
@@ -17,7 +18,7 @@ class DataVizViewer extends Component {
 
         this.state = {
             vennFilter: [],
-            tableRows: Object.values(atlas.result.cells[this.props.selectedCell].rows),
+            tableRows: values(atlas.result.cells[this.props.selectedCell].rows),
             vennSets: atlas.result.cells[this.props.selectedCell].sets,
             defaultSortOrder: this.getDataTableDefaultSortOrder()
         };
