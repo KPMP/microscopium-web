@@ -25,6 +25,7 @@ class GeneDataTable extends Component {
         this.resetFilterAndSort = this.resetFilterAndSort.bind(this);
         this.reactTableExists = this.reactTableExists.bind(this);
         this.updateSecondaryState = this.updateSecondaryState.bind(this);
+        this.onResetClick = this.onResetClick.bind(this);
         this.reactTable = React.createRef();
 
         this.state = {
