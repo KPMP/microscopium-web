@@ -5,6 +5,7 @@ import SiteVennDiagram from './SiteVennDiagram';
 import Instruction from './Instruction';
 import each from 'lodash/each';
 import values from 'lodash/values';
+import ReactGA from 'react-ga';
 
 import atlas from '../../data/atlas';
 
@@ -63,7 +64,10 @@ class DataVizViewer extends Component {
 
     onVennClick(vennSet) {
         let siteNames = vennSet.sets.join(' ');
-
+        ReactGA.event({
+            category: 'Venn Diagram',
+            action: 'Click Set'
+        });
         this.setState({
             vennFilter: this.props.allSites.map(function (siteName) {
                 return {
@@ -75,6 +79,11 @@ class DataVizViewer extends Component {
     }
 
     onSiteClick(siteName) {
+        ReactGA.event({
+            category: 'Venn Diagram',
+            action: 'Click Site',
+            label: siteName
+        });
         let sites = this.props.selectedSites
             , siteIsSelected = sites.indexOf(siteName);
 

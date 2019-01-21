@@ -7,6 +7,7 @@ import "react-table/react-table.css";
 import { getFromReactTable } from '../../data/downloadUtil';
 import Instruction from './Instruction';
 import isEqual from 'lodash/isEqual';
+import ReactGA from 'react-ga';
 
 const NO_ENTRY = "-";
 const P_VALUE = "P Value";
@@ -24,6 +25,7 @@ class GeneDataTable extends Component {
         this.resetFilterAndSort = this.resetFilterAndSort.bind(this);
         this.reactTableExists = this.reactTableExists.bind(this);
         this.updateSecondaryState = this.updateSecondaryState.bind(this);
+        this.onResetClick = this.onResetClick.bind(this);
         this.reactTable = React.createRef();
 
         this.state = {
@@ -49,6 +51,14 @@ class GeneDataTable extends Component {
         }
     }
 
+    onResetClick() {
+        ReactGA.event({
+            category: 'Data Table',
+            action: 'Reset Filters'
+        });
+        this.resetFilterAndSort();
+    }
+
     resetFilterAndSort() {
         this.setState({
             sorted: this.props.defaultSortOrder,
@@ -57,12 +67,20 @@ class GeneDataTable extends Component {
     }
 
     onSortedChange(sorted) {
+        ReactGA.event({
+            category: 'Data Table',
+            action: 'Sort Data'
+        });
         this.setState({
             sorted: sorted
         }, this.updateSecondaryState);
     }
 
     onFilteredChange(filtered) {
+        ReactGA.event({
+            category: 'Data Table',
+            action: 'Filter Data'
+        });
         this.setState({
             filtered: filtered
         }, this.updateSecondaryState);
@@ -210,6 +228,13 @@ class GeneDataTable extends Component {
         }];
     }
 
+    onDownloadClick() {
+        ReactGA.event({
+            category: 'Data Table',
+            action: 'Download'
+        });
+    }
+
     render() {
         return (
             <Col sm={8} id="gene-data-table">
@@ -240,17 +265,18 @@ class GeneDataTable extends Component {
                     <Col className="col-auto">
                         <Button color="secondary"
                                 outline
-                                onClick={this.resetFilterAndSort}
+                                onClick={this.onResetClick}
                                 className="reset-table-button"
                             >Reset
                         </Button>
-                        <CSVLink
-                            className="btn btn-primary"
-                            data={this.state.downloadData}
-                            filename={this.props.selectedCellName + ' Filtered.csv'}
-                            target="_blank"
-                            >Download CSV
-                        </CSVLink>
+                            <CSVLink
+                                className="btn btn-primary"
+                                data={this.state.downloadData}
+                                filename={this.props.selectedCellName + ' Filtered.csv'}
+                                target="_blank"
+                                onClick={this.onDownloadClick}
+                                >Download CSV
+                            </CSVLink>
                     </Col>
                 </Row>
                 <Row>

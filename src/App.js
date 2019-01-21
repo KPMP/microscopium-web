@@ -5,6 +5,7 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import ReactGA from 'react-ga';
 
 import SchematicViewerContainer from './components/schematic/SchematicViewerContainer';
 import DataVizViewerContainer from './components/dataviz/DataVizViewerContainer';
@@ -28,6 +29,9 @@ const saveState = () => {
 };
 
 store.subscribe(saveState);
+
+const GA_TRACKING_ID = 'UA-124331187-6';
+ReactGA.initialize(GA_TRACKING_ID);
 
 /* APP COMPONENT *****************************************************************/
 class App extends Component {
