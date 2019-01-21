@@ -5,6 +5,8 @@ import { HashRouter, Switch, Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import createHistory from 'history/createBrowserHistory';
+import ReactGA from 'react-ga';
 
 import SchematicViewerContainer from './components/schematic/SchematicViewerContainer';
 import DataVizViewerContainer from './components/dataviz/DataVizViewerContainer';
@@ -29,12 +31,25 @@ const saveState = () => {
 
 store.subscribe(saveState);
 
+const GA_TRACKING_ID = 'UA-124331187-6';
+
+ReactGA.initialize(GA_TRACKING_ID);
+function logPageView(location, action) {
+    ReactGA.set({ page: location.pathname + location.search });
+    ReactGA.pageview(location.pathname + location.search);
+}
+
+const history = createHistory();
+history.listen((location, action) => {
+    logPageView(location, action);
+});
+
 /* APP COMPONENT *****************************************************************/
 class App extends Component {
   render() {
     return (
         <Provider store={store}>
-            <HashRouter basename={`${process.env.PUBLIC_URL}`}>
+            <HashRouter history={history} basename={`${process.env.PUBLIC_URL}`}>
                 <Container fluid>
                     <DemoNavBar />
                     <Switch>

@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import union from 'lodash/union';
 import flattenDeep from 'lodash/flattenDeep';
+import ReactGA from 'react-ga';
 //import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
 const IMG_SRC_PREFIX = '/atlas/img/schematic/';
@@ -22,6 +23,11 @@ class SchematicViewer extends Component {
     }
 
     onCellClick(cellName) {
+        ReactGA.event({
+            category: 'Schematic',
+            action: 'Select Cell Type',
+            label: cellName
+        });
         this.props.setSelectedCell(cellName);
     }
 
