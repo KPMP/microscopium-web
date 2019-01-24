@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import React, { Component } from 'react';
 import { Container } from 'reactstrap';
-import { HashRouter, Switch, Route } from 'react-router-dom';
+import { Router, Switch, Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
@@ -12,6 +12,7 @@ import DataVizViewerContainer from './components/dataviz/DataVizViewerContainer'
 import initialState from './initialState';
 import rootReducer from './reducers';
 import DemoNavBar from "./components/nav/DemoNavBar";
+import createHistory from 'history/createBrowserHistory';
 
 /* INITIALIZE REDUX **************************************************************/
 const cacheStore = window.sessionStorage.getItem('atlas');
@@ -28,6 +29,8 @@ const saveState = () => {
     window.sessionStorage.setItem('atlas', JSON.stringify(store.getState()));
 };
 
+const history = createHistory();
+
 store.subscribe(saveState);
 
 const GA_TRACKING_ID = 'UA-124331187-6';
@@ -38,15 +41,15 @@ class App extends Component {
   render() {
     return (
         <Provider store={store}>
-            <HashRouter basename={`${process.env.PUBLIC_URL}`}>
+            <Router basename="/atlas" history={history}>
                 <Container fluid>
                     <DemoNavBar />
                     <Switch>
-                      <Route exact path="/" component={SchematicViewerContainer} />
-                      <Route path="/data/:cellName" component={DataVizViewerContainer} />
+                      <Route exact path={process.env.PUBLIC_URL} component={SchematicViewerContainer} />
+                      <Route path={process.env.PUBLIC_URL + "/data/:cellName"} component={DataVizViewerContainer} />
                     </Switch>
                 </Container>
-            </HashRouter>
+            </Router>
         </Provider>
     );
   }

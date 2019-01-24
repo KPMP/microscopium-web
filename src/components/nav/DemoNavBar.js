@@ -6,8 +6,8 @@ class DemoNavBar extends Component {
     render() {
         return (
             <Navbar expand="md" className="nav-container container-fluid row">
-                <NavbarBrand href={process.env.PUBLIC_URL + "/"}>
-                    <img src="img/logo.png" alt="Kidney Tissue Atlas Concept" className="logo"/>
+                <NavbarBrand href={process.env.PUBLIC_URL}>
+                    <img src="/img/logo.png" alt="Kidney Tissue Atlas Concept" className="logo"/>
                 </NavbarBrand>
                 <div id="demo-text">
                     Atlas Concept
@@ -15,7 +15,7 @@ class DemoNavBar extends Component {
                 <Nav navbar className="ml-auto">
                     <NavItem>
                         <NavLink>
-                            <Link to="/">Cell Types</Link></NavLink>
+                            <Link to={process.env.PUBLIC_URL}>Cell Types</Link></NavLink>
                     </NavItem>
                     <NavItem>
                         <NavLink disabled>Molecular</NavLink>

@@ -75,7 +75,7 @@ class SchematicViewer extends Component {
                                     <span className="cell-structure-name">{structure.structureName}</span>
                                     ) : (
                                     <Link className="cell-structure-name"
-                                          to={`/data/${encodeURIComponent(structure.cellName)}`}
+                                          to={process.env.PUBLIC_URL + `/data/${encodeURIComponent(structure.cellName)}`}
                                           onClick={() => { this.onCellClick(structure.cellName)}}
                                           onMouseEnter={() => this.setState({ activeImages: structure.images })}
                                         >{structure.structureName}
@@ -84,7 +84,7 @@ class SchematicViewer extends Component {
                                     <ul className="cell-type-list">
                                         {structure.cells.map((cell) => {
                                             return <li>
-                                                    <Link to={`/data/${encodeURIComponent(cell.cellName)}`}
+                                                    <Link to={process.env.PUBLIC_URL + `/data/${encodeURIComponent(cell.cellName)}`}
                                                           onClick={() => { this.onCellClick(cell.cellName)}}
                                                           onMouseEnter={() => this.setState( { activeImages: cell.images })}
                                                         >{cell.cellName}
