@@ -68,7 +68,7 @@ class Instruction extends Component {
 }
 
 Instruction.propTypes = {
-    id: PropTypes.String.isRequired,
+    id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     children: PropTypes.oneOfType([
         PropTypes.arrayOf(PropTypes.node),
