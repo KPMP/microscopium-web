@@ -11,7 +11,7 @@ import ReactGA from 'react-ga';
 
 const NO_ENTRY = "-";
 const P_VALUE = "P Value";
-const FC = "FC";
+const FC = "Fold Change";
 
 class GeneDataTable extends Component {
 
