@@ -10,7 +10,7 @@ class DemoNavBar extends Component {
                     <img src="/img/logo.png" alt="Kidney Tissue Atlas Concept" className="logo"/>
                 </NavbarBrand>
                 <div id="demo-text">
-                    Atlas Concept
+                    Cell Type Search: Transcriptomics Concept
                 </div>
                 <Nav navbar className="ml-auto">
                     <NavItem>
