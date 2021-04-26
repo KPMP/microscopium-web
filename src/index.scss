@@ -18,10 +18,11 @@ code {
     monospace;
 }
 
+
 /** SCHEMATIC IMAGES ***********************************************/
 #schematic-images {
 
-  background-image: url($schematic-img-base-path + 'schematic-base.png');
+  // background-image: url($schematic-img-base-path + 'schematic-base.svg');
   position: relative;
   top: 0px;
   left: 0px;
@@ -35,6 +36,8 @@ code {
     width: 721px;
     height: 659px;
   }
+
+
 
   div.peritubular-capillary {
     background-image: url($schematic-img-base-path + 'peritubular-capillary.png');
@@ -370,3 +373,24 @@ svg {
     margin-left: 20px;
   }
 }
+
+
+svg {
+  height: 100%;
+  width: 100%;
+}
+
+.glomerular-endothelial-active {
+  fill: yellow;
+  opacity: .45;
+}
+
+.ascending-vasa-recta-active {
+  fill: yellow;
+  opacity: .45;
+}
+
+.cell-mask {
+  cursor: pointer;
+}
+  
